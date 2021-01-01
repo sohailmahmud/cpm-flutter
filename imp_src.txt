@@ -1,0 +1,13 @@
+Hero Animation Avatar:
+final card = Hero(
+      tag: 'hero',
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: CircleAvatar(
+          radius: 72.0,
+          backgroundColor: Colors.transparent,
+          backgroundImage: AssetImage('assets/logo.png'),
+        ),
+      ),
+    );
+
