@@ -952,11 +952,11 @@ class PrescriptionState extends State<Prescription> {
         ),
         padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
         color: kDashBoxColor,
-        child: Text('Preview Prescription', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
+        child: Text('Preview', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
       ),
     );
 
-    final saveWithPreview = Padding(
+    final saveAndPrint = Padding(
       padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 90),
       child: MaterialButton(
         onPressed: () {
@@ -967,7 +967,22 @@ class PrescriptionState extends State<Prescription> {
         ),
         padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
         color: kDashBoxColor,
-        child: Text('Save with Preview', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
+        child: Text('Save and Print', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
+      ),
+    );
+
+    final teleMedicine = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 90),
+      child: MaterialButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('');
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
+        padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
+        color: kDashBoxColor,
+        child: Text('Telemedicine', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
       ),
     );
 
@@ -1082,7 +1097,7 @@ class PrescriptionState extends State<Prescription> {
                         border: Border.all(color: kDashBoxColor, width: 1.2)),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Follow-up Patient", style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                      child: Text("Follow-Up Patient", style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
                     ),
                   ),
                 ),
@@ -1137,7 +1152,9 @@ class PrescriptionState extends State<Prescription> {
 
                     preview,
 
-                    saveWithPreview,
+                    saveAndPrint,
+
+                    teleMedicine,
                     SizedBox(height: 50,),
                   ],
                 ),

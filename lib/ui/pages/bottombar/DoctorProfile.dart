@@ -220,7 +220,7 @@ class DoctorProfileState extends State<DoctorProfile> {
       children: [
         Container(
             child: Padding(
-              padding: EdgeInsets.only(left: 5.0, top: 0.0, right: 0.0, bottom: 5.0),
+              padding: EdgeInsets.only(left: 6.0, top: 0.0, right: 0.0, bottom: 5.0),
               child: Text(
                 ' Chamber Address- 1:', textAlign: TextAlign.center,
                 style: TextStyle(fontFamily: 'Segoe', fontSize: 14.0, color: kTitleTextColor, fontWeight: FontWeight.w600),

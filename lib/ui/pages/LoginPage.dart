@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     final logoTitle = Padding(
       padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 20.0),
       child: Text(
-        'Complete HealthCare Solutions in your pocket', textAlign: TextAlign.center,
+        'Complete Healthcare Solutions in your pocket', textAlign: TextAlign.center,
         style: TextStyle(fontFamily: 'Segoe', fontSize: 15.0, color: kBodyTextColor, fontWeight: FontWeight.w500),
       ),
     );
@@ -112,8 +112,16 @@ class _LoginPageState extends State<LoginPage> {
     //   ),
     // );
 
+    final accountValidation = Padding(
+      padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 20.0),
+      child: Text(
+        'Paid Version: 365 days', textAlign: TextAlign.center,
+        style: TextStyle(fontFamily: 'Segoe', fontSize: 15.0, color: kBodyTextColor, fontWeight: FontWeight.w500),
+      ),
+    );
+
     final loginButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 10.0),
       child: MaterialButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
@@ -203,9 +211,10 @@ class _LoginPageState extends State<LoginPage> {
             bmdc,
             SizedBox(height: 8.0,),
             email,
-            SizedBox(height: 8.0,),
+            SizedBox(height: 18.0,),
+            accountValidation,
             // password,
-            SizedBox(height: 30.0),
+            SizedBox(height: 5.0),
             loginButton,
             //forgotLabel,
             //SignInWithFB,
