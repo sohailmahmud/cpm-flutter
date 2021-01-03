@@ -342,7 +342,7 @@ class Home extends StatelessWidget {
           child: Container(
             width: 195,
             height: 90,
-            padding: EdgeInsets.only(top: 10.0, left: 10.0, bottom: 2.0, right: 2.0),
+            padding: EdgeInsets.only(top: 10.0, left: 2.0, bottom: 2.0, right: 10.0),
             child: Container(
               child: InkWell(
                 child: Column(
@@ -399,7 +399,7 @@ class Home extends StatelessWidget {
           child: Container(
             width: 195,
             height: 90,
-            padding: EdgeInsets.only(top: 2.0, left: 10.0, bottom: 10.0, right: 2.0),
+            padding: EdgeInsets.only(top: 2.0, left: 2.0, bottom: 10.0, right: 10.0),
             child: Container(
               child: InkWell(
                 child: Column(
@@ -486,7 +486,7 @@ class Home extends StatelessWidget {
               endIndent: 10,
             ),
             cardWithDividerRow4,
-            SizedBox(height: 30,),
+            SizedBox(height: 50,),
           ],
         ),
       ),
