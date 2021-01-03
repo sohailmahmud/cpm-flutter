@@ -15,12 +15,13 @@ class NewsState extends State<News> {
   Widget build(BuildContext context) {
     return Scaffold
       (
-        appBar: AppBar
-          (
-          elevation: 2.0,
-          backgroundColor: Colors.white,
-          title: Text('News Updates', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 30.0)),
-        ),
+      appBar: AppBar(
+        elevation: 2.0,
+        backgroundColor: Colors.white,
+        shadowColor: Colors.teal,
+        centerTitle: true,
+        title: Text('News Updates', style: TextStyle(fontFamily: 'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25.0)),
+      ),
         body: Container(),
     );
   }

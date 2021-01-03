@@ -19,7 +19,7 @@ class OnlineConsultancyState extends State<OnlineConsultancy> {
           onPressed: () => Navigator.of(context).pop(),
           icon: Icon(Icons.arrow_back, color: Colors.black),
         ),
-        title: Text('Emergency Consultancy', style: TextStyle(fontFamily:'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 24.0)),
+        title: Text('Emergency Online Consultancy', style: TextStyle(fontFamily:'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20.0)),
       ),
       body: Container(
 

@@ -160,7 +160,7 @@ class Home extends StatelessWidget {
       ],
     );
 
-    final cardWithDivider = Row(
+    final cardWithDividerRow1 = Row(
       children: [
         Expanded(
          child: Container(
@@ -174,15 +174,15 @@ class Home extends StatelessWidget {
             color: kDashBoxColor,
             elevation: 10,
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultationHistory()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReportSeen()));
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 const ListTile(
-                  leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
-                  title: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', color: Colors.white)),
-                  //subtitle: Text('TWICE', style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
+                  //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
+                  title: Icon(Icons.assignment_turned_in_outlined, color: Colors.white, size: 40),
+                  subtitle: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', color: Colors.white), textAlign: TextAlign.center,),
                 ),
                 // ignore: deprecated_member_use
                 /*ButtonTheme.bar(
@@ -202,7 +202,7 @@ class Home extends StatelessWidget {
       ),
         Container(
           height: 135,
-          child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
+          child: VerticalDivider(color: kBaseColor, thickness: 0.8,),
         ),
         Expanded(
           child: Container(
@@ -216,15 +216,15 @@ class Home extends StatelessWidget {
               color: kDashBoxColor,
               elevation: 10,
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultationHistory()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => OnlineConsultancy()));
               },
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   const ListTile(
-                    leading: Icon(Icons.domain, color: Colors.white, size: 50),
-                    title: Text('Advises', style: TextStyle(fontFamily: 'Segoe', color: Colors.white)),
-                    //subtitle: Text('TWICE', style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
+                    //leading: Icon(Icons.domain, color: Colors.white, size: 40),
+                    title: Icon(Icons.online_prediction, color: Colors.white, size: 40),
+                    subtitle: Text('Online Consultancy', style: TextStyle(fontFamily: 'Segoe', color: Colors.white), textAlign: TextAlign.center,),
                   ),
                 ],
               ),
@@ -234,7 +234,7 @@ class Home extends StatelessWidget {
       ],
     );
 
-    final cardWithDivider2 = Row(
+    final cardWithDividerRow2 = Row(
       children: [
         Expanded(
           child: Container(
@@ -248,15 +248,15 @@ class Home extends StatelessWidget {
               color: kDashBoxColor,
               elevation: 10,
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultationHistory()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => Earnings()));
               },
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   const ListTile(
-                    leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
-                    title: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', color: Colors.white)),
-                    //subtitle: Text('TWICE', style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
+                    //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
+                    title: Icon(Icons.account_balance_wallet_outlined, color: Colors.white, size: 40),
+                    subtitle: Text('Earnings', style: TextStyle(fontFamily: 'Segoe', color: Colors.white), textAlign: TextAlign.center,),
                   ),
                   // ignore: deprecated_member_use
                   /*ButtonTheme.bar(
@@ -276,7 +276,7 @@ class Home extends StatelessWidget {
         ),
         Container(
           height: 135,
-          child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
+          child: VerticalDivider(color: kBaseColor, thickness: 0.8,),
         ),
         Expanded(
           child: Container(
@@ -296,9 +296,9 @@ class Home extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   const ListTile(
-                    leading: Icon(Icons.domain, color: Colors.white, size: 50),
-                    title: Text('Advises', style: TextStyle(fontFamily: 'Segoe', color: Colors.white)),
-                    //subtitle: Text('TWICE', style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
+                    //leading: Icon(Icons.domain, color: Colors.white, size: 50),
+                    title: Icon(Icons.history_rounded, color: Colors.white, size: 40),
+                    subtitle: Text('Consultation History', style: TextStyle(fontFamily: 'Segoe', color: Colors.white), textAlign: TextAlign.center,),
                   ),
                 ],
               ),
@@ -308,73 +308,113 @@ class Home extends StatelessWidget {
       ],
     );
 
-    final cardWithDivider3 = Row(
+    final cardWithDividerRow3 = Row(
       children: [
         Expanded(
           child: Container(
             width: 195,
-            height: 132,
-            padding: EdgeInsets.only(top: 10.0, left: 10.0, bottom: 10.0, right: 2.0),
-            child: MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              color: kDashBoxColor,
-              elevation: 10,
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultationHistory()));
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const ListTile(
-                    leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
-                    title: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', color: Colors.white)),
-                    //subtitle: Text('TWICE', style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
-                  ),
-                  // ignore: deprecated_member_use
-                  /*ButtonTheme.bar(
-                  child: ButtonBar(
-                    children: <Widget>[
-                      FlatButton(
-                        child: const Text('List of Patients: 500', style: TextStyle(fontFamily: 'Segoe',color: Colors.white)),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),*/
-                ],
+            height: 90,
+            padding: EdgeInsets.only(top: 10.0, left: 10.0, bottom: 2.0, right: 2.0),
+            child: Container(
+              child: InkWell(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
+                      title: Icon(Icons.assignment_turned_in, color: Colors.blue, size: 40),
+                      subtitle: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                    ),
+                  ],
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReportSeen()));
+                },
               ),
             ),
           ),
         ),
         Container(
-          height: 135,
-          child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
+          height: 110,
+          child: VerticalDivider(color: kBaseColor, thickness: 0.8,),
         ),
         Expanded(
           child: Container(
             width: 195,
-            height: 132,
-            padding: EdgeInsets.only( top: 10.0, left: 2.0, bottom: 10.0, right: 10.0),
-            child: MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
+            height: 90,
+            padding: EdgeInsets.only(top: 10.0, left: 10.0, bottom: 2.0, right: 2.0),
+            child: Container(
+              child: InkWell(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
+                      title: Icon(Icons.online_prediction, color: Colors.blue, size: 40),
+                      subtitle: Text('Online Consultancy', style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                    ),
+                  ],
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => OnlineConsultancy()));
+                },
               ),
-              color: kDashBoxColor,
-              elevation: 10,
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultationHistory()));
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const ListTile(
-                    leading: Icon(Icons.domain, color: Colors.white, size: 50),
-                    title: Text('Advises', style: TextStyle(fontFamily: 'Segoe', color: Colors.white)),
-                    //subtitle: Text('TWICE', style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
-                  ),
-                ],
+            ),
+          ),
+        ),
+      ],
+    );
+
+    final cardWithDividerRow4 = Row(
+      children: [
+        Expanded(
+          child: Container(
+            width: 195,
+            height: 90,
+            padding: EdgeInsets.only(top: 2.0, left: 10.0, bottom: 10.0, right: 2.0),
+            child: Container(
+              child: InkWell(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
+                      title: Icon(Icons.account_balance_wallet, color: Colors.blue, size: 40),
+                      subtitle: Text('Earnings', style: TextStyle(fontFamily: 'Segoe', fontSize: 20, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                    ),
+                  ],
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => Earnings()));
+                },
+              ),
+            ),
+          ),
+        ),
+        Container(
+          height: 110,
+          child: VerticalDivider(color: kBaseColor, thickness: 0.8,),
+        ),
+        Expanded(
+          child: Container(
+            width: 195,
+            height: 90,
+            padding: EdgeInsets.only(top: 2.0, left: 10.0, bottom: 10.0, right: 2.0),
+            child: Container(
+              child: InkWell(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
+                      title: Icon(Icons.history_rounded, color: Colors.blue, size: 40),
+                      subtitle: Text('Consultation History', style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                    ),
+                  ],
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultationHistory()));
+                },
               ),
             ),
           ),
@@ -427,23 +467,25 @@ class Home extends StatelessWidget {
             consultationHistory,
             SizedBox(height: 10,),
             SizedBox(height: 30,),*/
-            cardWithDivider,
+            cardWithDividerRow1,
             const Divider(
-              color: kBodyTextColor,
+              color: kBaseColor,
               height: 0,
               thickness: 1,
               indent: 10,
               endIndent: 10,
             ),
-            cardWithDivider2,
+            cardWithDividerRow2,
+            SizedBox(height: 10,),
+            cardWithDividerRow3,
             const Divider(
-              color: kBodyTextColor,
+              color: kBaseColor,
               height: 0,
               thickness: 1,
               indent: 10,
               endIndent: 10,
             ),
-            cardWithDivider3,
+            cardWithDividerRow4,
             SizedBox(height: 30,),
           ],
         ),
