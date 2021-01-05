@@ -26,6 +26,11 @@ class EarningsState extends State<Earnings> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(25),
+            ),
+          ),
           elevation: 2.0,
           backgroundColor: Colors.white,
           leading: IconButton(
@@ -33,7 +38,7 @@ class EarningsState extends State<Earnings> {
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(Icons.arrow_back, color: Colors.black),
           ),
-          title: Text('Earnings', style: TextStyle(fontFamily: 'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 30.0)),
+          title: Text('Earnings', style: TextStyle(fontFamily: 'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25.0)),
           actions: <Widget>[
             Container(
               margin: EdgeInsets.only(right: 8.0),

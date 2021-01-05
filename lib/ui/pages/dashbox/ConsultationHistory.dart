@@ -19,11 +19,13 @@ class ConsultationHistoryState extends State<ConsultationHistory> {
           onPressed: () => Navigator.of(context).pop(),
           icon: Icon(Icons.arrow_back, color: Colors.black),
         ),
-        title: Text('Consultation History', style: TextStyle(fontFamily:'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 24.0)),
+        title: Text('Consultation History', style: TextStyle(fontFamily:'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 24.0),),
       ),
       body: Container(
 
       ),
     );
   }
+
+
 }

@@ -5,7 +5,7 @@ import 'package:icon_badge/icon_badge.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 
 import 'bottombar/Appointments.dart';
-import 'bottombar/News.dart';
+import 'bottombar/PharmaUpdates.dart';
 import 'bottombar/Home.dart';
 import 'bottombar/Prescription.dart';
 import 'bottombar/DoctorProfile.dart';
@@ -22,7 +22,9 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int selectedIndex = 2;
-  List<Widget> listWidgets = [Appointments(), News(), Home(), Prescription(), DoctorProfile()];
+  List<Widget> listWidgets = [Appointments(), PharmaUpdates(), Home(), Prescription(), DoctorProfile()];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +129,7 @@ class _DashboardState extends State<Dashboard> {
         elevation: 0,
         backgroundColor: kBackgroundColor,
         iconTheme: IconThemeData(color: kBaseColor),
-        toolbarHeight: 40,
+        toolbarHeight: 50,
         actions: <Widget>[
           IconBadge(
             icon: Icon(Icons.notifications_none, color: kBaseColor,),
@@ -139,6 +141,39 @@ class _DashboardState extends State<Dashboard> {
             onTap: () {
             },
           ),
+          SizedBox(
+            width: 40,
+            height: 50,
+            child: PopupMenuButton(
+              icon: Container(
+                child:  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 60.0,
+                    child: Image.asset('assets/doctorimg.png'),
+                ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: new Border.all(
+                    color: kBaseColor,
+                    width: 0.8,
+                  ),
+                  boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black, spreadRadius: 1)],
+                ),
+              ),
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem<String> (
+                    value: 'View Profile',
+                    child: Text('View Profile'),
+                  ),
+                  PopupMenuItem<String> (
+                    value: 'Edit Profile',
+                    child: Text('Edit Profile'),
+                  ),
+                ];
+              },
+            ),
+          )
         ],
        ),
       backgroundColor: kBackgroundColor,
@@ -152,7 +187,7 @@ class _DashboardState extends State<Dashboard> {
           style: TabStyle.reactCircle,
           items: [
             TabItem(icon: Image.asset('assets/appoint.png', scale: 12.0,), title: ''),
-            TabItem(icon: Image.asset('assets/blog.png', scale: 10.0,), title: ''),
+            TabItem(icon: Image.asset('assets/blog.png', scale: 12.0,), title: ''),
             TabItem(icon: Image.asset('assets/home.png', scale: 11.0,), title: ''),
             TabItem(icon: Image.asset('assets/rx.png', scale: 15.0,), title: ''),
             TabItem(icon: Image.asset('assets/profile.png', scale: 12.0,), title: ''),

@@ -1,9 +1,11 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:dio/dio.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 
@@ -36,9 +38,17 @@ class PrescriptionState extends State<Prescription> {
   final newPatient = <NewPatient>[NewPatient('Sohail', '12345'), NewPatient('Mahmud', '12345'), NewPatient('Sami', '12345'), NewPatient('Rony', '12345'), NewPatient('Alamin', '12345')];
   NewPatient selectedNewPatient;
 
+  final nextVisit = <NextVisit>[NextVisit('After Day 1', ''), NextVisit('After Day 2', ''), NextVisit('After Day 3', ''), NextVisit('After Day 4', ''), NextVisit('After Day 5', '')];
+  NextVisit selectedNextVisit;
+
+  final paidTK = <PaidTK>[PaidTK('100', ''), PaidTK('200', ''), PaidTK('300', ''), PaidTK('After Day 4', ''), PaidTK('After Day 5', '')];
+  PaidTK selectedPaidTK;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   bool autovalidate = false;
+
+  final format = DateFormat("dd-MM-yyyy");
 
 
   @override
@@ -252,16 +262,22 @@ class PrescriptionState extends State<Prescription> {
                     ),
                   ),
                 ),
-                new ListTile(
-                  title: new TextField(
-                    keyboardType: TextInputType.text,
-                    autofocus: true,
+                ListTile(
+                  title: DateTimeField(
+                      format: format,
+                      onShowPicker: (context, currentValue) {
+                        return showDatePicker(
+                            context: context,
+                            firstDate: DateTime(1900),
+                            initialDate: currentValue ?? DateTime.now(),
+                            lastDate: DateTime(2100));
+                      },
                     decoration: InputDecoration(
-                      hintText: "Current Date",
+                      hintText: "Select Current Date",
                       contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
                     ),
-                  ),
+                    ),
                 ),
                 ListTile(
                   title: new DropdownButtonFormField(
@@ -838,7 +854,7 @@ class PrescriptionState extends State<Prescription> {
               keyboardType: TextInputType.multiline,
               autofocus: true,
               decoration: new InputDecoration(
-                hintText: "Insert text here....",
+                hintText: "",
                 contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
               ),
@@ -861,13 +877,78 @@ class PrescriptionState extends State<Prescription> {
             ),
           ),
           ListTile(
-            title: new TextField(
-              keyboardType: TextInputType.numberWithOptions(),
-              autofocus: true,
-              decoration: new InputDecoration(
-                hintText: "Paid (TK)",
-                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            title: Container(
+              child:
+              SimpleAutocompleteFormField<NextVisit>(
+                decoration: InputDecoration(
+                  hintText: "Next Visit",
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+                suggestionsHeight: 80.0,
+                itemBuilder: (context, nextVisit) => Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(nextVisit.name,
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(nextVisit.address)
+                      ]),
+                ),
+                onSearch: (search) async => nextVisit
+                    .where((nextVisit) =>
+                nextVisit.name
+                    .toLowerCase()
+                    .contains(search.toLowerCase()) ||
+                    nextVisit.address
+                        .toLowerCase()
+                        .contains(search.toLowerCase()))
+                    .toList(),
+                itemFromString: (string) => nextVisit.singleWhere(
+                        (nextVisit) => nextVisit.name.toLowerCase() == string.toLowerCase(),
+                    orElse: () => null),
+                onChanged: (value) => setState(() => selectedNextVisit = value),
+                onSaved: (value) => setState(() => selectedNextVisit = value),
+                validator: (nextVisit) => nextVisit == null ? 'Invalid person.' : null,
+              ),
+            ),
+          ),
+          ListTile(
+            title: Container(
+              child:
+              SimpleAutocompleteFormField<PaidTK>(
+                decoration: InputDecoration(
+                  hintText: "Paid (TK)",
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+                suggestionsHeight: 80.0,
+                itemBuilder: (context, paidTK) => Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(paidTK.name,
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(paidTK.address)
+                      ]),
+                ),
+                onSearch: (search) async => paidTK
+                    .where((paidTK) =>
+                paidTK.name
+                    .toLowerCase()
+                    .contains(search.toLowerCase()) ||
+                    paidTK.address
+                        .toLowerCase()
+                        .contains(search.toLowerCase()))
+                    .toList(),
+                itemFromString: (string) => paidTK.singleWhere(
+                        (paidTK) => paidTK.name.toLowerCase() == string.toLowerCase(),
+                    orElse: () => null),
+                onChanged: (value) => setState(() => selectedPaidTK = value),
+                onSaved: (value) => setState(() => selectedPaidTK = value),
+                validator: (paidTK) => paidTK == null ? 'Invalid person.' : null,
               ),
             ),
           ),
@@ -879,19 +960,6 @@ class PrescriptionState extends State<Prescription> {
                 hintText: "Visit No.",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-              ),
-            ),
-          ),
-          ListTile(
-            title: new TextField(
-              keyboardType: TextInputType.number,
-              autofocus: true,
-              decoration: new InputDecoration(
-                hintText: "Last Visit",
-                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-                suffixText: 'days ago',
-                suffixStyle: TextStyle(color: kBodyTextColor)
               ),
             ),
           ),
@@ -1072,8 +1140,7 @@ class PrescriptionState extends State<Prescription> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar
-          (
+        appBar: AppBar(
           title: Text('Prescription', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontWeight: FontWeight.w700, fontSize: 28.0)),
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -1097,7 +1164,7 @@ class PrescriptionState extends State<Prescription> {
                         border: Border.all(color: kDashBoxColor, width: 1.2)),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Follow-Up Patient", style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                      child: Text("Follow-Up Patient", style: TextStyle(fontFamily: 'Segoe', fontSize: 16, fontWeight: FontWeight.w700),),
                     ),
                   ),
                 ),
@@ -1110,7 +1177,7 @@ class PrescriptionState extends State<Prescription> {
 
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("New Patient", style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                      child: Text("New Patient", style: TextStyle(fontFamily: 'Segoe', fontSize: 16, fontWeight: FontWeight.w700),),
                     ),
                   ),
                 ),
@@ -1307,6 +1374,20 @@ class PrescriptionState extends State<Prescription> {
         ),
     );
   }
+}
+
+class PaidTK {
+  PaidTK(this.name, this.address);
+  final String name, address;
+  @override
+  String toString() => name;
+}
+
+class NextVisit {
+  NextVisit(this.name, this.address);
+  final String name, address;
+  @override
+  String toString() => name;
 }
 
 class Brand {

@@ -49,6 +49,11 @@ class AppointmentsState extends State<Appointments> {
 
     return Scaffold (
       appBar: AppBar(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
         elevation: 2.0,
         backgroundColor: Colors.white,
         shadowColor: Colors.teal,

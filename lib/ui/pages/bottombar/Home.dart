@@ -323,7 +323,7 @@ class Home extends StatelessWidget {
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
                       title: Icon(Icons.assignment_turned_in, color: Colors.blue, size: 40),
-                      subtitle: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      subtitle: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -351,7 +351,7 @@ class Home extends StatelessWidget {
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
                       title: Icon(Icons.online_prediction, color: Colors.blue, size: 40),
-                      subtitle: Text('Online Consultancy', style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      subtitle: Text('Online Consultancy', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -380,7 +380,7 @@ class Home extends StatelessWidget {
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
                       title: Icon(Icons.account_balance_wallet, color: Colors.blue, size: 40),
-                      subtitle: Text('Earnings', style: TextStyle(fontFamily: 'Segoe', fontSize: 20, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      subtitle: Text('Earnings', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -408,7 +408,7 @@ class Home extends StatelessWidget {
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
                       title: Icon(Icons.history_rounded, color: Colors.blue, size: 40),
-                      subtitle: Text('Consultation History', style: TextStyle(fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      subtitle: Text('Consultation History', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -424,7 +424,13 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 2.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(25),
+          ),
+        ),
+        automaticallyImplyLeading: false,
+        elevation: 5.0,
         backgroundColor: Colors.white,
         shadowColor: Colors.teal,
         title: Text('Dashboard', style: TextStyle(fontFamily:'Segoe', color: kBaseColor, fontWeight: FontWeight.w700, fontSize: 26.0)),

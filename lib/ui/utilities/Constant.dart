@@ -16,6 +16,7 @@ final kShadowColor = Color(0xFFB7B7B7).withOpacity(.16);
 final kActiveShadowColor = Color(0xFF4056C6).withOpacity(.15);
 final kFaceBookColor = Color(0xFF102397);
 final kGoogleColor = Color(0xFFff4f38);
+final kWhiteShade = Color(0xFFF4F4F4);
 // Text Style
 const kHeadingTextStyle = TextStyle(
   fontSize: 22,

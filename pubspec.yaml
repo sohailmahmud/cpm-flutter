@@ -1,10 +1,10 @@
 name: pro_health
 description: A new Flutter application.
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
-  sdk: ">=2.2.0 <8.0.0"
+  sdk: ">=2.2.0 <11.0.0"
 
 dependencies:
   flutter:
@@ -45,6 +45,7 @@ dependencies:
   flutter_staggered_animations: ^0.1.2
   page_transition: ^1.1.5
   cached_network_image: ^2.2.0+1
+  flutter_spinkit: ^4.1.2
 
 dev_dependencies:
   flutter_test:

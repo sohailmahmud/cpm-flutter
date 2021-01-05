@@ -137,92 +137,101 @@ class DoctorProfileState extends State<DoctorProfile> {
       ),
     );
 
-    final consultationsNumber = Row(
-      children: [
-        Container(
-            child: Padding(
-              padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
-              child: Text(
-                '   Consultations Number ', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
-              ),
-            )
-        ),
-        Container(
-            height: 30,
-            child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
-        Container(
-            child: Padding(
-              padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
-              child: Text(
-                ' CN-1234', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
-              ),
+    final consultations = Card(
+      borderOnForeground: true,
+      color: kWhiteShade,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Column(
+        children: [
+          Row(
+           children: [
+            Container(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 5.0),
+                  child: Text(
+                    '   Consultations Number ', textAlign: TextAlign.center,
+                    style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
+                  ),
+                )
             ),
-        ),
-      ],
-    );
-
-    final consultationFee = Row(
-      children: [
-        Container(
-            child: Padding(
-              padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
-              child: Text(
-                '   Consultation Fees ', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
+            Container(
+                height: 30,
+                child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
+            Container(
+              child: Padding(
+                padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 5.0),
+                child: Text(
+                  ' CN-1234', textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
+                  ),
+                ),
               ),
-            )
-        ),
-        Container(
-            height: 30,
-            child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
-        Container(
-          child: Padding(
-            padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
-            child: Text(
-              ' 1,000 TK.', textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
-            ),
+            ],
           ),
-        ),
-      ],
-    );
-
-    final followUpFee = Row(
-      children: [
-        Container(
-            child: Padding(
-              padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
-              child: Text(
-                '   Follow-up Fees ', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
+          Row(
+            children: [
+              Container(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
+                    child: Text(
+                      '   Consultation Fees ', textAlign: TextAlign.center,
+                      style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
+                    ),
+                  )
               ),
-            )
-        ),
-        Container(
-            height: 30,
-            child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
-        ),
-        Container(
-          child: Padding(
-            padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
-            child: Text(
-              ' 1,000 TK.', textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
-            ),
+              Container(
+                  height: 30,
+                  child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
+                  child: Text(
+                    ' 1,000 TK.', textAlign: TextAlign.center,
+                    style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+          Row(
+            children: [
+              Container(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 20.0),
+                    child: Text(
+                      '   Follow-up Fees ', textAlign: TextAlign.center,
+                      style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
+                    ),
+                  )
+              ),
+              Container(
+                height: 30,
+                child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
+              ),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 20.0),
+                  child: Text(
+                    ' 1,000 TK.', textAlign: TextAlign.center,
+                    style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
 
     final chamberAddress1 = Row(
       children: [
         Container(
             child: Padding(
-              padding: EdgeInsets.only(left: 6.0, top: 0.0, right: 0.0, bottom: 5.0),
+              padding: EdgeInsets.only(left: 7.0, top: 0.0, right: 0.0, bottom: 5.0),
               child: Text(
-                ' Chamber Address- 1:', textAlign: TextAlign.center,
+                'Chamber Address- 1:', textAlign: TextAlign.left,
                 style: TextStyle(fontFamily: 'Segoe', fontSize: 14.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
               ),
             )
@@ -249,7 +258,7 @@ class DoctorProfileState extends State<DoctorProfile> {
             child: Padding(
               padding: EdgeInsets.only(left: 5.0, top: 0.0, right: 0.0, bottom: 0.0),
               child: Text(
-                ' Chamber Address- 2:', textAlign: TextAlign.center,
+                'Chamber Address- 2:', textAlign: TextAlign.left,
                 style: TextStyle(fontFamily: 'Segoe', fontSize: 14.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
               ),
             )
@@ -342,9 +351,7 @@ class DoctorProfileState extends State<DoctorProfile> {
               indent: 0,
               endIndent: 0,
             ),
-            consultationsNumber,
-            consultationFee,
-            followUpFee,
+            consultations,
             const Divider(
               color: kBodyTextColor,
               height: 20,

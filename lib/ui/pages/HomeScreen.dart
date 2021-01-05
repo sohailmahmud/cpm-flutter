@@ -1,14 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter/services.dart';
 import 'package:pro_health/ui/pages/LoginPage.dart';
-//import 'package:pro_health/ui/pages/Dashboard.dart';
-//import 'package:pro_health/ui/widgets/SocialIcons.dart';
-//import 'package:pro_health/ui/utilities/CustomIcons.dart';
-import 'Dashboard.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
-import 'package:pro_health/ui/pages/OtpScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -58,7 +51,7 @@ class HomeScreenState extends State<HomeScreen> {
                   textAlign: TextAlign.left,
                 ),
                 subtitle: Text('Connect with our doctors community using phone, tablet or computer.',
-                  style: TextStyle(fontFamily: 'Segoe', fontStyle: FontStyle.italic, color: Colors.white, fontSize: 10, fontWeight: FontWeight.w700), textAlign: TextAlign.left,),
+                  style: TextStyle(fontFamily: 'Segoe', fontStyle: FontStyle.italic, color: Colors.white, fontSize: 9, fontWeight: FontWeight.w700), textAlign: TextAlign.left,),
               ),
             ],
           ),
@@ -95,7 +88,7 @@ class HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontFamily: 'Segoe', fontStyle: FontStyle.italic, fontSize: 15.0, color: Colors.white, fontWeight: FontWeight.w700), textAlign: TextAlign.left,
                 ),
                 subtitle: Text('Just like a clinic visit, our doctors listen to your history of symptoms and diagnose your condition.',
-                  style: TextStyle(fontFamily: 'Segoe', fontStyle: FontStyle.italic, color: Colors.white, fontSize: 10, fontWeight: FontWeight.w700), textAlign: TextAlign.left,),
+                  style: TextStyle(fontFamily: 'Segoe', fontStyle: FontStyle.italic, color: Colors.white, fontSize: 9, fontWeight: FontWeight.w700), textAlign: TextAlign.left,),
               ),
             ],
           ),
