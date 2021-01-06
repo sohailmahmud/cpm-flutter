@@ -20,7 +20,7 @@ class HomeScreenState extends State<HomeScreen> {
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 75.0,
-        child: Image.asset('assets/logo.png'),
+        child: Image.asset('assets/prohealthlogo.png'),
       ),
     );
 
@@ -124,12 +124,12 @@ class HomeScreenState extends State<HomeScreen> {
     final developedByLogo = Container(
       width: 100,
       height: 60,
-      child: Image.asset('assets/developedby.png'),
+      child: Image.asset('assets/pharmalogo.png'),
     );
 
 
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: Colors.white,
       body: Center(
         child: Expanded(
          child: ListView(

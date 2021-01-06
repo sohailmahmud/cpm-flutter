@@ -160,7 +160,7 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
   get _getVerifyButton{
     return MaterialButton(
       child: Container(
-        height: 32,
+        height: 36,
         width: 120,
         decoration: BoxDecoration(
             color: kDashBoxColor,

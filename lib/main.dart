@@ -10,7 +10,6 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     HomeScreen.tag: (context) => HomeScreen(),
-    //Screens1.tag: (context) => Screens1(),
     LoginPage.tag: (context) => LoginPage(),
     OtpScreen.tag: (context) => OtpScreen(mobileno: '',),
     Dashboard.tag: (context) => Dashboard(),

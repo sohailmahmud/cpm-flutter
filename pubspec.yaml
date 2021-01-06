@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.0
-  adobe_xd: ^1.0.0+1
+  font_awesome_flutter: ^8.11.0
   flutter_svg: ^0.17.0
   flutter_screenutil: ^0.4.2
   smooth_star_rating: ^1.1.1

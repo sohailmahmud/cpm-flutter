@@ -9,6 +9,7 @@ import 'package:pro_health/ui/pages/appointment/WidgetComponents/SlidingCard.dar
 import 'dart:math';
 
 import 'package:pro_health/ui/pages/appointment/sizeConfig.dart';
+import 'package:pro_health/ui/utilities/Constant.dart';
 
 class Appointments extends StatefulWidget {
   static String tag = 'Appointments';
@@ -55,11 +56,13 @@ class AppointmentsState extends State<Appointments> {
           ),
         ),
         elevation: 2.0,
-        backgroundColor: Colors.white,
+        backgroundColor: kBackgroundColor,
         shadowColor: Colors.teal,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Text('Appointments to Confirm', style: TextStyle(fontFamily: 'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25.0)),
       ),
+      backgroundColor: kBackgroundColor,
       body: isLoading
           ? SizedBox()
           : Container(

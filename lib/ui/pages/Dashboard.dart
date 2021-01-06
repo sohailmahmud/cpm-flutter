@@ -127,12 +127,12 @@ class _DashboardState extends State<Dashboard> {
         /*centerTitle: true,
         title: Text('Pro Health', style: TextStyle(color: kBaseColor),),*/
         elevation: 0,
-        backgroundColor: kBackgroundColor,
+        backgroundColor: kWhiteShade,
         iconTheme: IconThemeData(color: kBaseColor),
         toolbarHeight: 50,
         actions: <Widget>[
           IconBadge(
-            icon: Icon(Icons.notifications_none, color: kBaseColor,),
+            icon: Icon(Icons.notifications, color: kBaseColor,),
             itemCount: 50,
             badgeColor: Colors.red,
             itemColor: Colors.white,
@@ -142,7 +142,7 @@ class _DashboardState extends State<Dashboard> {
             },
           ),
           SizedBox(
-            width: 40,
+            width: 50,
             height: 50,
             child: PopupMenuButton(
               icon: Container(

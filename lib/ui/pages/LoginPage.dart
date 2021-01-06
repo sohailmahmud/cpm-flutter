@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
       tag: 'hero',
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
-        radius: 65.0,
+        radius: 60.0,
         child: Image.asset('assets/logo-icon.png'),
       ),
     );
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       validator: numberValidator,
       autofocus: false,
       initialValue: '',
-      style: TextStyle(fontFamily:"Segoe", fontSize: 16, color: Colors.black),
+      style: TextStyle(fontFamily:"Segoe", fontSize: 15, color: Colors.black),
       decoration: InputDecoration(
         hintText: 'Name',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
       validator: numberValidator,
       autofocus: false,
       initialValue: '',
-      style: TextStyle(fontFamily:"Segoe", fontSize: 16, color: Colors.black),
+      style: TextStyle(fontFamily:"Segoe", fontSize: 15, color: Colors.black),
       decoration: InputDecoration(
         hintText: 'Phone Number',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
       validator: numberValidator,
       autofocus: false,
       initialValue: '',
-      style: TextStyle(fontFamily:"Segoe", fontSize: 16, color: Colors.black),
+      style: TextStyle(fontFamily:"Segoe", fontSize: 15, color: Colors.black),
       decoration: InputDecoration(
         hintText: 'BMDC Registration No.',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
       validator: numberValidator,
       autofocus: false,
       initialValue: '',
-      style: TextStyle(fontFamily:"Segoe", fontSize: 16, color: Colors.black),
+      style: TextStyle(fontFamily:"Segoe", fontSize: 15, color: Colors.black),
       decoration: InputDecoration(
         hintText: 'E-mail Address',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final accountValidation = Padding(
-      padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 20.0),
+      padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 15.0),
       child: Text(
         'Paid Version: 365 days', textAlign: TextAlign.center,
         style: TextStyle(fontFamily: 'Segoe', fontSize: 15.0, color: kBodyTextColor, fontWeight: FontWeight.w500),
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
         },
         padding: EdgeInsets.all(12),
         color: kDashBoxColor,
-        child: Text('Get OTP', style: TextStyle(fontFamily: "Segoe", fontWeight: FontWeight.w600, fontSize: 20, color: Colors.white)),
+        child: Text('Get OTP', style: TextStyle(fontFamily: "Poppins-Bold", fontWeight: FontWeight.w600, fontSize: 20, color: Colors.white)),
       ),
     );
 

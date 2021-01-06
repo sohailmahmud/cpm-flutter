@@ -1019,8 +1019,8 @@ class PrescriptionState extends State<Prescription> {
           borderRadius: BorderRadius.circular(25),
         ),
         padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
-        color: kDashBoxColor,
-        child: Text('Preview', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
+        color: kWhiteShadow,
+        child: Text('Preview', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: kBaseColor, fontWeight: FontWeight.w700)),
       ),
     );
 
@@ -1034,8 +1034,8 @@ class PrescriptionState extends State<Prescription> {
           borderRadius: BorderRadius.circular(25),
         ),
         padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
-        color: kDashBoxColor,
-        child: Text('Save and Print', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
+        color: kWhiteShadow,
+        child: Text('Save and Print', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: kBaseColor, fontWeight: FontWeight.w700)),
       ),
     );
 
@@ -1049,8 +1049,8 @@ class PrescriptionState extends State<Prescription> {
           borderRadius: BorderRadius.circular(25),
         ),
         padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
-        color: kDashBoxColor,
-        child: Text('Telemedicine', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
+        color: kWhiteShadow,
+        child: Text('Telemedicine', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: kBaseColor, fontWeight: FontWeight.w700)),
       ),
     );
 
@@ -1144,7 +1144,7 @@ class PrescriptionState extends State<Prescription> {
           title: Text('Prescription', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontWeight: FontWeight.w700, fontSize: 28.0)),
           centerTitle: true,
           automaticallyImplyLeading: false,
-          backgroundColor: kBackgroundColor,
+          backgroundColor: kWhiteShade,
           toolbarHeight: 110,
           elevation: 0.0,
           bottom: TabBar(
@@ -1183,11 +1183,10 @@ class PrescriptionState extends State<Prescription> {
                 ),
               ]),
         ),
-
         body: TabBarView(
             children: <Widget>[
               Container(
-                color: kBackgroundColor,
+                color: kWhiteShade,
                 child: ListView(
                   padding: EdgeInsets.all(4),
                   children: [
@@ -1199,7 +1198,7 @@ class PrescriptionState extends State<Prescription> {
                 ),
               ),
               Container(
-                color: kBackgroundColor,
+                color: kWhiteShade,
                 child: ListView(
                   children: [
                     SizedBox(height: 20,),

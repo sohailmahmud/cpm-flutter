@@ -431,7 +431,7 @@ class Home extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
         elevation: 5.0,
-        backgroundColor: Colors.white,
+        backgroundColor: kBackgroundColor,
         shadowColor: Colors.teal,
         title: Text('Dashboard', style: TextStyle(fontFamily:'Segoe', color: kBaseColor, fontWeight: FontWeight.w700, fontSize: 26.0)),
         actions: <Widget>[

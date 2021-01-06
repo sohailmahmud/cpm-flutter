@@ -1,5 +1,6 @@
 import 'package:fdottedline/fdottedline.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
@@ -13,14 +14,14 @@ class DoctorProfile extends StatefulWidget {
 
 class DoctorProfileState extends State<DoctorProfile> {
   var rating = 4.5;
-  double radius = 40;
-  double iconSize = 24;
+  double radius = 32;
+  double iconSize = 20;
   double distance = 2;
 
   @override
   Widget build(BuildContext context) {
 
-    final editProfile = Padding(
+    final topBarProfile = Padding(
       padding: EdgeInsets.symmetric(vertical: 15.0),
       child: MaterialButton(
         shape: RoundedRectangleBorder(
@@ -45,21 +46,46 @@ class DoctorProfileState extends State<DoctorProfile> {
             radius: 65,
             backgroundColor: kDashBoxColor,
             child: CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 61.0,
-              child: Image.asset('assets/doctorimg.png'),
+              backgroundColor: kWhiteShade,
+              radius: 63,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 60.0,
+                child: Image.asset('assets/doctorimg.png'),
+              ),
             ),
           ),
           Positioned(
               top: -(radius - distance),
               right: -(radius + iconSize + distance),
-              bottom: -iconSize - distance - 85,
+              bottom: -iconSize - distance - 95,
               left: radius,
               child: Icon(
                 Icons.circle,
                 color: Colors.green,
                 size: iconSize,
-              )),
+              ),
+          ),
+          Positioned(
+              top: -(iconSize + radius),
+              right: -(radius + iconSize - distance - 40),
+              bottom: iconSize - 40,
+              left: radius + iconSize + 60,
+              child: RawMaterialButton(
+                elevation: 5.0,
+                child: Icon(
+                  Icons.edit,
+                  color: Colors.blue,
+                  size: iconSize,
+                ),
+                shape: CircleBorder(),
+                fillColor: Colors.white,
+                padding: const EdgeInsets.all(3.0),
+                onPressed: () {
+
+                },
+              ),
+          ),
         ],
       ),
     );
@@ -139,7 +165,8 @@ class DoctorProfileState extends State<DoctorProfile> {
 
     final consultations = Card(
       borderOnForeground: true,
-      color: kWhiteShade,
+      color: kWhiteShadow,
+      elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -332,7 +359,7 @@ class DoctorProfileState extends State<DoctorProfile> {
           shrinkWrap: true,
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-            editProfile,
+            topBarProfile,
             SizedBox(height: 6.0),
             doctorImg,
             SizedBox(height: 6.0),
