@@ -3,6 +3,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:icon_badge/icon_badge.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'bottombar/Appointments.dart';
 import 'bottombar/PharmaUpdates.dart';
@@ -132,13 +133,14 @@ class _DashboardState extends State<Dashboard> {
         toolbarHeight: 50,
         actions: <Widget>[
           IconBadge(
-            icon: Icon(Icons.notifications, color: kBaseColor,),
+            icon: Icon(Icons.notifications_active_outlined, color: kBaseColor,),
             itemCount: 50,
             badgeColor: Colors.red,
             itemColor: Colors.white,
             maxCount: 45,
             hideZero: true,
             onTap: () {
+
             },
           ),
           SizedBox(
@@ -157,7 +159,7 @@ class _DashboardState extends State<Dashboard> {
                     color: kBaseColor,
                     width: 0.8,
                   ),
-                  boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black, spreadRadius: 1)],
+                  boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black, spreadRadius: 0.7)],
                 ),
               ),
               itemBuilder: (BuildContext context) {

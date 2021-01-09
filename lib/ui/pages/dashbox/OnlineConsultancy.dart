@@ -21,8 +21,24 @@ class OnlineConsultancyState extends State<OnlineConsultancy> {
         ),
         title: Text('Emergency Online Consultancy', style: TextStyle(fontFamily:'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20.0)),
       ),
-      body: Container(
-
+      body: Center(
+        child: ListView(
+          children: [
+            SizedBox(height: 20),
+         Center(
+           child: Container(
+            width: 80.00,
+            height: 80.00,
+            decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: ExactAssetImage('assets/onlineconsultancy.png'),
+                  fit: BoxFit.fitHeight,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

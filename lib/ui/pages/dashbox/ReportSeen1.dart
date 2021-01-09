@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+final Color backgroundColor = Color(0xFF2d2d39);
 
 class TransactionDetails {
   final String item;
@@ -16,15 +19,14 @@ class TransactionDetails {
   });
 }
 
-class ReportSeen extends StatefulWidget {
-  static String tag = 'ReportSeen';
+class ReportSeen1 extends StatefulWidget {
+  static String tag = 'ReportSeen1';
   @override
-  ReportSeenState createState() => new ReportSeenState();
+  ReportSeen1State createState() => ReportSeen1State();
 }
 
-class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMixin {
-
-
+class ReportSeen1State extends State<ReportSeen1>
+    with SingleTickerProviderStateMixin {
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 200);
@@ -35,16 +37,16 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
   Brightness statusIconColor = Brightness.dark;
 
   List<TransactionDetails> todayTransactionsList = [
-    TransactionDetails(
+    new TransactionDetails(
       item: 'Sohail Mahmud',
-      companyName: '+8801234567890',
+      companyName: 'Apple',
       ammount: 2499,
-      income: true,
-      icon: Icons.pets,
+      income: false,
+      icon: Icons.person,
     ),
-    TransactionDetails(
+    new TransactionDetails(
       item: 'Jahidul Hasan',
-      companyName: '+8801234567890',
+      companyName: 'Upwork',
       ammount: 499,
       income: true,
       icon: Icons.person,
@@ -52,54 +54,54 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
   ];
 
   List<TransactionDetails> yesterdayTransactionsList = [
-    TransactionDetails(
-      item: 'Sohail Mahmud',
-      companyName: '+8801234567890',
-      ammount: 2499,
-      income: true,
-      icon: Icons.pets,
-    ),
-    TransactionDetails(
-      item: 'Jahidul Hasan',
-      companyName: '+8801234567890',
-      ammount: 499,
-      income: true,
-      icon: Icons.person,
-    ),
-    TransactionDetails(
-      item: 'Kamrul Islam',
-      companyName: '+8801234567890',
-      ammount: 2499,
-      income: true,
-      icon: Icons.pets,
-    ),
-    TransactionDetails(
-      item: 'Abdur Rahim',
-      companyName: '+8801234567890',
-      ammount: 499,
-      income: true,
-      icon: Icons.person,
-    ),
-    TransactionDetails(
-      item: 'Sohail Mahmud',
-      companyName: '+8801234567890',
-      ammount: 2499,
-      income: true,
-      icon: Icons.pets,
-    ),
-    TransactionDetails(
-      item: 'Jahidul Hasan',
-      companyName: '+8801234567890',
-      ammount: 499,
-      income: true,
-      icon: Icons.person,
+    new TransactionDetails(
+      item: 'Beats Headphone 2th Gen',
+      companyName: 'Apple',
+      ammount: 199,
+      income: false,
+      icon: Icons.headset,
     ),
     new TransactionDetails(
-      item: 'Kabir Ahmed',
-      companyName: '+880123456789',
+      item: 'Cake',
+      companyName: 'StarBucks',
+      ammount: 19,
+      income: false,
+      icon: Icons.cake,
+    ),
+    new TransactionDetails(
+      item: 'Cake',
+      companyName: 'StarBucks',
+      ammount: 19,
+      income: false,
+      icon: Icons.cake,
+    ),
+    new TransactionDetails(
+      item: 'Cake',
+      companyName: 'StarBucks',
+      ammount: 19,
+      income: false,
+      icon: Icons.cake,
+    ),
+    new TransactionDetails(
+      item: 'Cake',
+      companyName: 'StarBucks',
+      ammount: 19,
+      income: false,
+      icon: Icons.cake,
+    ),
+    new TransactionDetails(
+      item: 'Cake',
+      companyName: 'StarBucks',
+      ammount: 19,
+      income: false,
+      icon: Icons.cake,
+    ),
+    new TransactionDetails(
+      item: 'Money Transfer',
+      companyName: 'eSewa',
       ammount: 499,
       income: true,
-      icon: Icons.group,
+      icon: Icons.transit_enterexit,
     ),
   ];
 
@@ -115,8 +117,6 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
     _controller.dispose();
     super.dispose();
   }
-
-
 
   Widget transactionList(
       List<TransactionDetails> transactionList,
@@ -151,8 +151,8 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black38,
-                    blurRadius: 1,
+                    color: Colors.grey,
+                    blurRadius: 3,
                   )
                 ],
               ),
@@ -182,8 +182,8 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
                 ),
                 trailing: Text(
                   (_transaction.income)
-                      ? "+${_transaction.ammount} \৳"
-                      : " -${_transaction.ammount} \৳",
+                      ? "+${_transaction.ammount} \$"
+                      : " -${_transaction.ammount} \$",
                   style: TextStyle(
                     fontSize: 18,
                     color: (_transaction.income) ? Colors.green : Colors.red,
@@ -220,17 +220,6 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
                     children: <Widget>[
-                      SizedBox(height: 25,),
-                      Container(
-                        width: 100.00,
-                        height: 80.00,
-                        decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                            image: ExactAssetImage('assets/reportseen.png'),
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
-                      ),
                       Container(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: ListView(
@@ -255,7 +244,7 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
                                     MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Recent Patients Report Seen",
+                                        "Report Seen History",
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 20,
@@ -291,24 +280,23 @@ class ReportSeenState extends State<ReportSeen> with SingleTickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
-      appBar: AppBar(
-        elevation: 2.0,
-        backgroundColor: Colors.white,
-        shadowColor: Colors.teal,
-        leading: IconButton(
-          color: Colors.black,
-          onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-        ),
-        title: Text('Report Seen', style: TextStyle(fontFamily:'Segoe', color: Colors.black, fontWeight: FontWeight.w700, fontSize: 24.0),),
+    Size size = MediaQuery.of(context).size;
+    screenHeight = size.height;
+    screenWidth = size.width;
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: statusIconColor,
       ),
-      body: Center(
-        child: Container(
-          child: dashboard(context),
-        ),
+    );
+    return Scaffold(
+      backgroundColor: Color(0xff343442),
+      body: Stack(
+        children: <Widget>[
+          dashboard(context),
+        ],
       ),
     );
   }
-
 }

@@ -1132,8 +1132,8 @@ class PrescriptionState extends State<Prescription> {
           borderRadius: BorderRadius.circular(25),
         ),
         padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
-        color: kDashBoxColor,
-        child: Text('Edit Prescription', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: Colors.white, fontWeight: FontWeight.w700)),
+        color: kWhiteShadow,
+        child: Text('Edit Prescription', style: TextStyle(fontFamily: "Segoe", fontSize: 15, color: kBaseColor, fontWeight: FontWeight.w700)),
       ),
     );
 

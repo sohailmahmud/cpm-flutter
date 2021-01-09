@@ -112,9 +112,9 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: () {
           Navigator.of(context).pushNamed(OtpScreen.tag);
         },
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(8),
         color: kDashBoxColor,
-        child: Text('Get OTP', style: TextStyle(fontFamily: "Poppins-Bold", fontWeight: FontWeight.w600, fontSize: 20, color: Colors.white)),
+        child: Text('Get OTP', style: TextStyle(fontFamily: "Poppins-Bold", fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white)),
       ),
     );
 

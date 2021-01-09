@@ -1,13 +1,15 @@
 import 'package:fdottedline/fdottedline.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/services.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class DoctorProfile extends StatefulWidget {
   DoctorProfile({Key key, this.title}) : super(key: key);
   final String title;
   static String tag = 'DoctorProfile';
+
   @override
   DoctorProfileState createState() => new DoctorProfileState();
 }
@@ -18,19 +20,188 @@ class DoctorProfileState extends State<DoctorProfile> {
   double iconSize = 20;
   double distance = 2;
 
+  var alertStyle = AlertStyle(
+    animationType: AnimationType.fromTop,
+    isCloseButton: true,
+    isOverlayTapDismiss: false,
+    descStyle: TextStyle(fontWeight: FontWeight.bold),
+    descTextAlign: TextAlign.start,
+    animationDuration: Duration(milliseconds: 400),
+    alertBorder: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      side: BorderSide(
+        color: Colors.grey,
+      ),
+    ),
+    titleStyle: TextStyle(
+      color: Colors.red,
+    ),
+    alertAlignment: Alignment.topCenter,
+  );
+
+  get editDoctor => Alert(
+      context: context,
+      style: alertStyle,
+      title: '',
+      content: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 0,),
+            child: MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              padding: EdgeInsets.only(top: 5, left: 68, bottom: 5, right: 68),
+              color: kDashBoxColor,
+              child: Text('Edit Profile',
+                  style: TextStyle(fontFamily: "Segoe", fontWeight: FontWeight.w700, fontSize: 18, color: kWhiteShade),
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed('');
+              },
+            ),
+          ),
+          SizedBox(height: 15,),
+          Container(
+            child: Stack(
+              alignment: Alignment.center,
+              // ignore: deprecated_member_use
+              overflow: Overflow.visible,
+              children: [
+                CircleAvatar(
+                  radius: 60,
+                  backgroundColor: kDashBoxColor,
+                  child: CircleAvatar(
+                    backgroundColor: kWhiteShade,
+                    radius: 57,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 55.0,
+                      child: Image.asset('assets/doctorimg.png'),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: -(iconSize + radius),
+                  right: -(radius + iconSize - distance - 40),
+                  bottom: iconSize - 95,
+                  left: radius + iconSize + 50,
+                  child: RawMaterialButton(
+                    elevation: 5.0,
+                    child: Icon(
+                      Icons.camera_alt_outlined,
+                      color: Colors.blue,
+                      size: iconSize,
+                    ),
+                    shape: CircleBorder(),
+                    fillColor: Colors.white,
+                    padding: const EdgeInsets.all(3.0),
+                    onPressed: () {
+                      //Navigator.of(context).push(MaterialPageRoute(builder: (_) => EditDoctor()));
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Name',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Qualification',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Name',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Qualification',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Name',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Qualification',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Name',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Qualification',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Name',
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Qualification',
+            ),
+          ),
+        ],
+      ),
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Update Info",
+            style: TextStyle(color: Colors.blue, fontSize: 20),
+          ),
+          padding: EdgeInsets.all(5),
+          onPressed: () => Navigator.pop(context),
+          color: kWhiteShadow,
+          radius: BorderRadius.circular(20),
+        )
+      ],).show();
+
   @override
   Widget build(BuildContext context) {
 
     final topBarProfile = Padding(
-      padding: EdgeInsets.symmetric(vertical: 15.0),
+      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 30),
       child: MaterialButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed('s');
+          Navigator.of(context).pushNamed('');
         },
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(8),
         color: kDashBoxColor,
         child: Text('My Profile', style: TextStyle(fontFamily: "Segoe", fontWeight: FontWeight.w700, fontSize: 20, color: Colors.white)),
       ),
@@ -82,7 +253,8 @@ class DoctorProfileState extends State<DoctorProfile> {
                 fillColor: Colors.white,
                 padding: const EdgeInsets.all(3.0),
                 onPressed: () {
-
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (_) => EditDoctor()));
+                  editDoctor;
                 },
               ),
           ),
@@ -416,6 +588,38 @@ class DoctorProfileState extends State<DoctorProfile> {
       ),
     );
   }
+}
+
+Widget _buildName({String imageAsset, String name, double score}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    child: Column(
+      children: <Widget>[
+        SizedBox(height: 12),
+        Container(height: 2, color: Colors.redAccent),
+        SizedBox(height: 12),
+        Row(
+          children: <Widget>[
+            CircleAvatar(
+              backgroundImage: AssetImage(imageAsset),
+              radius: 30,
+            ),
+            SizedBox(width: 12),
+            Text(name),
+            Spacer(),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+              child: Text("${score}", style: TextStyle(),),
+              decoration: BoxDecoration(
+                color: kWhiteShadow,
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }
 
 String numberValidator(String value) {

@@ -93,8 +93,8 @@ class EarningsState extends State<Earnings> {
                 padding: const EdgeInsets.all(24.0),
                 child: Column
                   (
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>
                     [
                       Material
@@ -120,8 +120,8 @@ class EarningsState extends State<Earnings> {
                 padding: const EdgeInsets.all(24.0),
                 child: Column
                   (
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>
                     [
                       Material

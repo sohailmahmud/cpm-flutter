@@ -6,6 +6,7 @@ import 'package:pro_health/ui/pages/dashbox/Earnings.dart';
 import 'package:pro_health/ui/pages/dashbox/ConsultationHistory.dart';
 import 'package:pro_health/ui/pages/dashbox/OnlineConsultancy.dart';
 import 'package:pro_health/ui/pages/dashbox/ReportSeen.dart';
+import 'package:pro_health/ui/pages/dashbox/ReportSeen1.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 
 class Home extends StatelessWidget {
@@ -322,8 +323,9 @@ class Home extends StatelessWidget {
                   children: <Widget>[
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
-                      title: Icon(Icons.assignment_turned_in, color: Colors.blue, size: 40),
-                      subtitle: Text('Report Seen', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      title: Icon(Icons.assignment_turned_in, color: kDashBoxColor, size: 40),
+                      subtitle: Text('Report Seen',
+                        style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: kDashBoxColor), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -336,7 +338,7 @@ class Home extends StatelessWidget {
         ),
         Container(
           height: 110,
-          child: VerticalDivider(color: kBaseColor, thickness: 0.8,),
+          child: VerticalDivider(color: Colors.teal, thickness: 0.5,),
         ),
         Expanded(
           child: Container(
@@ -350,8 +352,9 @@ class Home extends StatelessWidget {
                   children: <Widget>[
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
-                      title: Icon(Icons.online_prediction, color: Colors.blue, size: 40),
-                      subtitle: Text('Online Consultancy', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      title: Icon(Icons.online_prediction, color: kDashBoxColor, size: 40),
+                      subtitle: Text('Online Consultancy',
+                        style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: kDashBoxColor), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -379,8 +382,9 @@ class Home extends StatelessWidget {
                   children: <Widget>[
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
-                      title: Icon(Icons.account_balance_wallet, color: Colors.blue, size: 40),
-                      subtitle: Text('Earnings', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      title: Icon(Icons.account_balance_wallet, color: kDashBoxColor, size: 40),
+                      subtitle: Text('Earnings',
+                        style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: kDashBoxColor), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -393,7 +397,7 @@ class Home extends StatelessWidget {
         ),
         Container(
           height: 110,
-          child: VerticalDivider(color: kBaseColor, thickness: 0.8,),
+          child: VerticalDivider(color: Colors.teal, thickness: 0.5,),
         ),
         Expanded(
           child: Container(
@@ -407,8 +411,9 @@ class Home extends StatelessWidget {
                   children: <Widget>[
                     const ListTile(
                       //leading: Icon(Icons.receipt_long, color: Colors.white, size: 50),
-                      title: Icon(Icons.history_rounded, color: Colors.blue, size: 40),
-                      subtitle: Text('Consultation History', style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.blue), textAlign: TextAlign.center,),
+                      title: Icon(Icons.history_rounded, color: kDashBoxColor, size: 40),
+                      subtitle: Text('Consultation History',
+                        style: TextStyle(fontFamily: 'Segoe', fontSize: 15, fontWeight: FontWeight.w700, color: kDashBoxColor), textAlign: TextAlign.center,),
                     ),
                   ],
                 ),
@@ -473,7 +478,8 @@ class Home extends StatelessWidget {
             consultationHistory,
             SizedBox(height: 10,),
             SizedBox(height: 30,),*/
-            cardWithDividerRow1,
+
+            /*cardWithDividerRow1,
             const Divider(
               color: kBaseColor,
               height: 0,
@@ -481,13 +487,14 @@ class Home extends StatelessWidget {
               indent: 10,
               endIndent: 10,
             ),
-            cardWithDividerRow2,
-            SizedBox(height: 10,),
+            cardWithDividerRow2,*/
+
+            SizedBox(height: 40,),
             cardWithDividerRow3,
             const Divider(
-              color: kBaseColor,
+              color: Colors.teal,
               height: 0,
-              thickness: 1,
+              thickness: 0.5,
               indent: 10,
               endIndent: 10,
             ),

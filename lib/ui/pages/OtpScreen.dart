@@ -169,7 +169,7 @@ class _OtpScreenState extends State<OtpScreen> with SingleTickerProviderStateMix
         alignment: Alignment.center,
         child: new Text(
           "Verify",
-          style: TextStyle(fontFamily: 'Segoe', color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+          style: TextStyle(fontFamily: 'Segoe', color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
       onPressed: () {
