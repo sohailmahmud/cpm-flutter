@@ -1,6 +1,9 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:fdottedline/fdottedline.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -20,6 +23,8 @@ class DoctorProfileState extends State<DoctorProfile> {
   double iconSize = 20;
   double distance = 2;
 
+  final format = DateFormat("hh:mm a");
+
   var alertStyle = AlertStyle(
     animationType: AnimationType.fromTop,
     isCloseButton: true,
@@ -28,7 +33,7 @@ class DoctorProfileState extends State<DoctorProfile> {
     descTextAlign: TextAlign.start,
     animationDuration: Duration(milliseconds: 400),
     alertBorder: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
+      borderRadius: BorderRadius.circular(15.0),
       side: BorderSide(
         color: Colors.grey,
       ),
@@ -36,6 +41,7 @@ class DoctorProfileState extends State<DoctorProfile> {
     titleStyle: TextStyle(
       color: Colors.red,
     ),
+    alertElevation: 10,
     alertAlignment: Alignment.topCenter,
   );
 
@@ -52,8 +58,8 @@ class DoctorProfileState extends State<DoctorProfile> {
                 borderRadius: BorderRadius.circular(15),
               ),
               padding: EdgeInsets.only(top: 5, left: 68, bottom: 5, right: 68),
-              color: kDashBoxColor,
-              child: Text('Edit Profile',
+              color: kBaseColor,
+              child: Text('Edit Profile Info',
                   style: TextStyle(fontFamily: "Segoe", fontWeight: FontWeight.w700, fontSize: 18, color: kWhiteShade),
               ),
               onPressed: () {
@@ -69,11 +75,11 @@ class DoctorProfileState extends State<DoctorProfile> {
               overflow: Overflow.visible,
               children: [
                 CircleAvatar(
-                  radius: 60,
+                  radius: 58,
                   backgroundColor: kDashBoxColor,
                   child: CircleAvatar(
                     backgroundColor: kWhiteShade,
-                    radius: 57,
+                    radius: 56,
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 55.0,
@@ -105,86 +111,127 @@ class DoctorProfileState extends State<DoctorProfile> {
             ),
           ),
           TextField(
-            obscureText: true,
+            keyboardType: TextInputType.text,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
               labelText: 'Name',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
               labelText: 'Qualification',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Name',
+              labelText: 'Working Station',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Qualification',
+              labelText: 'Specialty',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Name',
+              labelText: 'BMDC No.',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Qualification',
+              labelText: 'Experience',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Name',
+              labelText: 'Consultations No.',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Qualification',
+              labelText: 'Consultation Fees',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Name',
+              labelText: 'Follow-Up Fees',
             ),
           ),
           TextField(
-            obscureText: true,
+            obscureText: false,
+            keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
-              labelText: 'Qualification',
+              labelText: 'Chamber Address - 1',
+            ),
+            maxLines: 25,
+            minLines: 2,
+            scrollPadding: const EdgeInsets.all(20),
+          ),
+          TextField(
+            obscureText: false,
+            keyboardType: TextInputType.multiline,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Chamber Address - 2',
+            ),
+            maxLines: 25,
+            minLines: 2,
+            scrollPadding: const EdgeInsets.all(20),
+          ),
+          TextField(
+            obscureText: false,
+            decoration: InputDecoration(
+              //icon: Icon(Icons.lock),
+              labelText: 'Availability',
+            ),
+          ),
+          DateTimeField(
+            format: format,
+            onShowPicker: (context, currentValue) async {
+              final time = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                builder: (context, child) => MediaQuery(
+                    data: MediaQuery.of(context)
+                        .copyWith(alwaysUse24HourFormat: false),
+                    child: child),
+              );
+              return DateTimeField.convert(time);
+            },
+            decoration: InputDecoration(
+              labelText: 'Consultation Time'
             ),
           ),
         ],
       ),
       buttons: [
         DialogButton(
+          width: 275,
           child: Text(
             "Update Info",
-            style: TextStyle(color: Colors.blue, fontSize: 20),
+            style: TextStyle(color: kWhiteShade, fontSize: 17, fontWeight: FontWeight.w500),
           ),
           padding: EdgeInsets.all(5),
           onPressed: () => Navigator.pop(context),
-          color: kWhiteShadow,
+          color: kDashBoxColor,
           radius: BorderRadius.circular(20),
         )
       ],).show();
@@ -588,38 +635,6 @@ class DoctorProfileState extends State<DoctorProfile> {
       ),
     );
   }
-}
-
-Widget _buildName({String imageAsset, String name, double score}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-    child: Column(
-      children: <Widget>[
-        SizedBox(height: 12),
-        Container(height: 2, color: Colors.redAccent),
-        SizedBox(height: 12),
-        Row(
-          children: <Widget>[
-            CircleAvatar(
-              backgroundImage: AssetImage(imageAsset),
-              radius: 30,
-            ),
-            SizedBox(width: 12),
-            Text(name),
-            Spacer(),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-              child: Text("${score}", style: TextStyle(),),
-              decoration: BoxDecoration(
-                color: kWhiteShadow,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
 }
 
 String numberValidator(String value) {

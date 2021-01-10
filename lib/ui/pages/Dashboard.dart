@@ -3,8 +3,6 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:icon_badge/icon_badge.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-
 import 'bottombar/Appointments.dart';
 import 'bottombar/PharmaUpdates.dart';
 import 'bottombar/Home.dart';
@@ -159,7 +157,7 @@ class _DashboardState extends State<Dashboard> {
                     color: kBaseColor,
                     width: 0.8,
                   ),
-                  boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black, spreadRadius: 0.7)],
+                  boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black, spreadRadius: 0.7)],
                 ),
               ),
               itemBuilder: (BuildContext context) {
@@ -188,7 +186,7 @@ class _DashboardState extends State<Dashboard> {
           curveSize: 85,
           style: TabStyle.reactCircle,
           items: [
-            TabItem(icon: Image.asset('assets/appoint.png', scale: 12.0,), title: ''),
+            TabItem(icon: Image.asset('assets/image.png', scale: 12.0,), title: ''),
             TabItem(icon: Image.asset('assets/blog.png', scale: 12.0,), title: ''),
             TabItem(icon: Image.asset('assets/home.png', scale: 11.0,), title: ''),
             TabItem(icon: Image.asset('assets/rx.png', scale: 15.0,), title: ''),

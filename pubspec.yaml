@@ -59,7 +59,6 @@ flutter:
     - assets/otp.png
     - assets/doctors.png
     - assets/drugs.png
-    - assets/appointment.png
     - assets/adoctor.png
     - assets/apatient.png
     - assets/patient.png

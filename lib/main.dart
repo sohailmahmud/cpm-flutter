@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
         primaryColor: kBaseColor,
-        fontFamily: 'Segoe',
+        fontFamily: 'RobotoMono',
       ),
       home: HomeScreen(),
       routes: routes,

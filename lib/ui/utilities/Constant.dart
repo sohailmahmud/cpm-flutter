@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Colors
+
+final kSwatchColor = Color(0xff0C4CA3);
 const kBaseColor = Color(0xFF233581);
 const kBackgroundColor = Color(0xFFF2F2F2);
 const kDashBoxColor = Color(0xff0C4CA3);
