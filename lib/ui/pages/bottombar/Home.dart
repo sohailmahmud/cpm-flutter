@@ -479,7 +479,7 @@ class Home extends StatelessWidget {
             SizedBox(height: 10,),
             SizedBox(height: 30,),*/
 
-            /*cardWithDividerRow1,
+            cardWithDividerRow1,
             const Divider(
               color: kBaseColor,
               height: 0,
@@ -487,7 +487,7 @@ class Home extends StatelessWidget {
               indent: 10,
               endIndent: 10,
             ),
-            cardWithDividerRow2,*/
+            cardWithDividerRow2,
 
             SizedBox(height: 40,),
             cardWithDividerRow3,

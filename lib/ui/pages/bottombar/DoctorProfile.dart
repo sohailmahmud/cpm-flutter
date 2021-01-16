@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:weekday_selector/weekday_selector.dart';
 
 class DoctorProfile extends StatefulWidget {
   DoctorProfile({Key key, this.title}) : super(key: key);
@@ -24,6 +25,8 @@ class DoctorProfileState extends State<DoctorProfile> {
   double distance = 2;
 
   final format = DateFormat("hh:mm a");
+
+  final values = <bool>[true, false, true, false, true, false, true];
 
   var alertStyle = AlertStyle(
     animationType: AnimationType.fromTop,
@@ -57,7 +60,7 @@ class DoctorProfileState extends State<DoctorProfile> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              padding: EdgeInsets.only(top: 5, left: 68, bottom: 5, right: 68),
+              padding: EdgeInsets.only(top: 1, left: 68, bottom: 5, right: 68),
               color: kBaseColor,
               child: Text('Edit Profile Info',
                   style: TextStyle(fontFamily: "Segoe", fontWeight: FontWeight.w700, fontSize: 18, color: kWhiteShade),
@@ -110,16 +113,26 @@ class DoctorProfileState extends State<DoctorProfile> {
               ],
             ),
           ),
+          SizedBox(height: 15,),
+          Center(
+           child: FDottedLine(
+            color: kDashBoxColor,
+            width: 298.0,
+            strokeWidth: 1.0,
+            dottedLength: 10.0,
+            space: 2.0,
+            corner: FDottedLineCorner.all(6.0),
+           ),
+          ),
+          SizedBox(height: 10,),
           TextField(
             keyboardType: TextInputType.text,
-            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
               labelText: 'Name',
             ),
           ),
           TextField(
-            obscureText: false,
             decoration: InputDecoration(
               //icon: Icon(Icons.lock),
               labelText: 'Qualification',
@@ -196,11 +209,50 @@ class DoctorProfileState extends State<DoctorProfile> {
             minLines: 2,
             scrollPadding: const EdgeInsets.all(20),
           ),
-          TextField(
-            obscureText: false,
+          SizedBox(height: 20,),
+          Container(
+            alignment: Alignment.topLeft,
+            child: Text('Consultation Day', style: TextStyle(fontSize: 16),),
+          ),
+          SizedBox(height: 10,),
+          WeekdaySelector(
+            displayedDays: {
+              DateTime.saturday,
+              DateTime.sunday,
+              DateTime.monday,
+              DateTime.tuesday,
+              DateTime.wednesday,
+              DateTime.thursday,
+              DateTime.friday,
+            },
+            firstDayOfWeek: DateTime.saturday,
+            selectedFillColor: Colors.indigo.shade300,
+            onChanged: (v) {
+              printIntAsDay(v);
+              setState(() {
+                values[v % 7] = !values[v % 7];
+              });
+            },
+            selectedElevation: 15,
+            elevation: 5,
+            disabledElevation: 0,
+            values: values,
+          ),
+          DateTimeField(
+            format: format,
+            onShowPicker: (context, currentValue) async {
+              final time = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                builder: (context, child) => MediaQuery(
+                    data: MediaQuery.of(context)
+                        .copyWith(alwaysUse24HourFormat: false),
+                    child: child),
+              );
+              return DateTimeField.convert(time);
+            },
             decoration: InputDecoration(
-              //icon: Icon(Icons.lock),
-              labelText: 'Availability',
+              labelText: 'Consultation Start Time'
             ),
           ),
           DateTimeField(
@@ -217,7 +269,7 @@ class DoctorProfileState extends State<DoctorProfile> {
               return DateTimeField.convert(time);
             },
             decoration: InputDecoration(
-              labelText: 'Consultation Time'
+                labelText: 'Consultation End Time'
             ),
           ),
         ],
@@ -404,7 +456,8 @@ class DoctorProfileState extends State<DoctorProfile> {
             ),
             Container(
                 height: 30,
-                child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
+                child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
+            ),
             Container(
               child: Padding(
                 padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 5.0),
@@ -540,7 +593,7 @@ class DoctorProfileState extends State<DoctorProfile> {
           child: Padding(
             padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
             child: Text(
-              'Sat-Tuesday', textAlign: TextAlign.left,
+              'Sat - Tuesday', textAlign: TextAlign.left,
               style: TextStyle(fontFamily: 'Segoe', fontSize: 16.0, color: kTextLightColor, fontWeight: FontWeight.w600),
             ),
           ),
@@ -634,6 +687,20 @@ class DoctorProfileState extends State<DoctorProfile> {
         ),
       ),
     );
+  }
+
+  printIntAsDay(int day) {
+    print('Received integer: $day. Corresponds to day: ${intDayToEnglish(day)}');
+  }
+  String intDayToEnglish(int day) {
+    if (day % 7 == DateTime.saturday % 7) return 'Saturday';
+    if (day % 7 == DateTime.sunday % 7) return 'Sunday';
+    if (day % 7 == DateTime.monday % 7) return 'Monday';
+    if (day % 7 == DateTime.tuesday % 7) return 'Tuesday';
+    if (day % 7 == DateTime.wednesday % 7) return 'Wednesday';
+    if (day % 7 == DateTime.thursday % 7) return 'Thursday';
+    if (day % 7 == DateTime.friday % 7) return 'Friday';
+    throw '🐞 This should never have happened: $day';
   }
 }
 

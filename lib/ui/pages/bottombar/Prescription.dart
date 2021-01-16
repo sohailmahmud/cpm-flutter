@@ -1,11 +1,20 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:dio/dio.dart';
 import 'package:find_dropdown/find_dropdown.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
+import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:pro_health/ui/pages/bottombar/PreviewPrescription.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 
@@ -46,9 +55,183 @@ class PrescriptionState extends State<Prescription> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  bool autovalidate = false;
 
   final format = DateFormat("dd-MM-yyyy");
+
+
+  String generatedPdfFilePath;
+
+  @override
+  void initState() {
+    super.initState();
+    generateExampleDocument();
+  }
+
+  Future<void> generateExampleDocument() async {
+    var htmlContent =""" <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<title>Page 1</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRomanPS;color:#231f20;}
+	.ft01{font-size:16px;font-family:ATIWHL+Arial;color:#231f20;}
+	.ft02{font-size:19px;font-family:LXYIRL+Arial;color:#231f20;}
+	.ft03{font-size:13px;font-family:RNEEJL+TimesNewRomanPSMT;color:#231f20;}
+	.ft04{font-size:15px;font-family:RNEEJL+TimesNewRomanPSMT;color:#231f20;}
+	.ft05{font-size:22px;font-family:YRCDEU+TimesNewRomanPS;color:#231f20;}
+	.ft06{font-size:16px;font-family:AEUPQB+TimesNewRomanPS;color:#231f20;}
+	.ft07{font-size:25px;font-family:LXYIRL+Arial;color:#231f20;}
+	.ft08{font-size:18px;font-family:ATIWHL+Arial;color:#231f20;}
+	.ft09{font-size:61px;font-family:JJMDCS+Arial;color:#231f20;}
+	.ft010{font-size:35px;font-family:JJMDCS+Arial;color:#231f20;}
+	.ft011{font-size:12px;font-family:RNEEJL+TimesNewRomanPSMT;color:#231f20;}
+	.ft012{font-size:16px;font-family:LXYIRL+Arial;color:#231f20;}
+	.ft013{font-size:16px;font-family:YRCDEU+TimesNewRomanPS;color:#231f20;}
+	.ft014{font-size:13px;line-height:17px;font-family:RNEEJL+TimesNewRomanPSMT;color:#231f20;}
+	.ft015{font-size:16px;line-height:18px;font-family:AEUPQB+TimesNewRomanPS;color:#231f20;}
+</style>
+</head>
+<body bgcolor="#E8E8E8" vlink="blue" link="blue">
+<div id="page1-div" style="position:relative;width:891px;height:1267px;">
+<!-- <img width="891" height="1267" src="7a01194ea3dc1f1f9d183f4c3593fb75001.png" alt="background image"/> -->
+<p style="position:absolute;top:475px;left:477px;white-space:nowrap" class="ft00"><b>TAB. ROZITH (500 mg)</b></p>
+<p style="position:absolute;top:495px;left:477px;white-space:nowrap" class="ft01"><i>০+১+০ (খাওয়ার পর)- ৫ দিন</i></p>
+<p style="position:absolute;top:530px;left:477px;white-space:nowrap" class="ft00"><b>TAB. SERGEL (20 mg)</b></p>
+<p style="position:absolute;top:550px;left:477px;white-space:nowrap" class="ft01"><i>১+১+০ (খাওয়ার ৩০ মিনিট আগে)- ১৫ দিন</i></p>
+<p style="position:absolute;top:587px;left:477px;white-space:nowrap" class="ft00"><b>TAB. AZITH(500 mg)</b></p>
+<p style="position:absolute;top:607px;left:477px;white-space:nowrap" class="ft01"><i>১+১+০ (খাওয়ার ৩০ মিনিট আগে)- ১৫ দিন</i></p>
+<p style="position:absolute;top:642px;left:477px;white-space:nowrap" class="ft00"><b>CAP. LYRIC (150 mg)</b></p>
+<p style="position:absolute;top:662px;left:477px;white-space:nowrap" class="ft01"><i>০+১+০ (খাওয়ার পর)- ৫ দিন</i></p>
+<p style="position:absolute;top:693px;left:477px;white-space:nowrap" class="ft00"><b>TAB. NEURO (150 mg)</b></p>
+<p style="position:absolute;top:713px;left:477px;white-space:nowrap" class="ft01"><i>১+০+১ (খাওয়ার ৩০ মিনিট আগে)- ১৫ দিন</i></p>
+
+<p style="position:absolute;top:1119px;left:624px;white-space:nowrap" class="ft00"><b>Signature</b></p>
+<p style="position:absolute;top:992px;left:175px;white-space:nowrap" class="ft01">বেশি করে পানি খাবেন</p>
+<p style="position:absolute;top:1041px;left:175px;white-space:nowrap" class="ft01">ধুমপান বর্জন করুন</p>
+<p style="position:absolute;top:1068px;left:175px;white-space:nowrap" class="ft01">নিয়মিত ব্যায়াম করুন</p>
+<p style="position:absolute;top:1015px;left:175px;white-space:nowrap" class="ft01">পর্যাপ্ত ঘুমাবেন</p>
+<p style="position:absolute;top:1028px;left:82px;white-space:nowrap" class="ft02"><i><b>উপদেশ</b></i></p>
+<p style="position:absolute;top:333px;left:81px;white-space:nowrap" class="ft00"><b>C/C</b></p>
+<p style="position:absolute;top:355px;left:114px;white-space:nowrap" class="ft014">Fever for 3 days<br/>Back Pain</p>
+<p style="position:absolute;top:586px;left:81px;white-space:nowrap" class="ft00"><b>Investigation</b></p>
+<p style="position:absolute;top:608px;left:114px;white-space:nowrap" class="ft014">CBC<br/>X-Ray</p>
+<p style="position:absolute;top:440px;left:81px;white-space:nowrap" class="ft00"><b>O/E</b></p>
+<p style="position:absolute;top:462px;left:114px;white-space:nowrap" class="ft014">BP: 120/90&#160;<br/>Pulse: 80</p>
+<p style="position:absolute;top:494px;left:114px;white-space:nowrap" class="ft014">Wt. : 80 Kg<br/>D.&#160;Allergy : Unknown</p>
+<p style="position:absolute;top:215px;left:143px;white-space:nowrap" class="ft00"><b>Thana:&#160;</b></p>
+<p style="position:absolute;top:215px;left:197px;white-space:nowrap" class="ft04">Pekua</p>
+<p style="position:absolute;top:215px;left:609px;white-space:nowrap" class="ft00"><b>Mob:</b></p>
+<p style="position:absolute;top:215px;left:651px;white-space:nowrap" class="ft04">01559-135203</p>
+<p style="position:absolute;top:215px;left:401px;white-space:nowrap" class="ft00"><b>Dis:</b></p>
+<p style="position:absolute;top:215px;left:434px;white-space:nowrap" class="ft04">Cox's Bazar</p>
+<p style="position:absolute;top:194px;left:143px;white-space:nowrap" class="ft00"><b>Name:</b></p>
+<p style="position:absolute;top:194px;left:193px;white-space:nowrap" class="ft04">Md. Sohail Mahmud</p>
+<p style="position:absolute;top:194px;left:609px;white-space:nowrap" class="ft00"><b>Sex:</b></p>
+<p style="position:absolute;top:194px;left:640px;white-space:nowrap" class="ft04">M</p>
+<p style="position:absolute;top:194px;left:400px;white-space:nowrap" class="ft00"><b>Age:</b></p>
+<p style="position:absolute;top:194px;left:438px;white-space:nowrap" class="ft04">22&#160;Yrs.</p>
+<p style="position:absolute;top:239px;left:143px;white-space:nowrap" class="ft00"><b>Date:&#160;</b></p>
+<p style="position:absolute;top:239px;left:186px;white-space:nowrap" class="ft04">25-10-2020</p>
+<p style="position:absolute;top:239px;left:401px;white-space:nowrap" class="ft00"><b>ID:&#160;</b></p>
+<p style="position:absolute;top:239px;left:430px;white-space:nowrap" class="ft04">000/1</p>
+<p style="position:absolute;top:239px;left:607px;white-space:nowrap" class="ft00"><b>Referred By:&#160;</b></p>
+<p style="position:absolute;top:239px;left:694px;white-space:nowrap" class="ft04">Dr. XYZ</p>
+<p style="position:absolute;top:21px;left:690px;white-space:nowrap" class="ft05"><b>Dr. Umme Salma</b></p>
+<p style="position:absolute;top:47px;left:710px;white-space:nowrap" class="ft015"><i>MBBS, BCS (Health)<br/>FCPS (Obs &amp; Gynae)</i></p>
+<p style="position:absolute;top:85px;left:563px;white-space:nowrap" class="ft06"><i>Consultant (Gynae &amp; High Risk Pregnancy)</i></p>
+<p style="position:absolute;top:123px;left:500px;white-space:nowrap" class="ft06"><i>Bangabondhu Sheikh Mujib Medical University (PG)</i></p>
+<p style="position:absolute;top:103px;left:602px;white-space:nowrap" class="ft06"><i>Consultant: Gynae &amp; Obs Department</i></p>
+<p style="position:absolute;top:22px;left:21px;white-space:nowrap" class="ft07"><b>ডা: উম্মে সালমা</b></p>
+<p style="position:absolute;top:50px;left:19px;white-space:nowrap" class="ft08"><i>এম বি বি এস, বিসিএস (স্বাস্থ্য)</i></p>
+<p style="position:absolute;top:67px;left:19px;white-space:nowrap" class="ft08"><i>এফ সি পি এস (গাইনি এন্ড অবস্)</i></p>
+<p style="position:absolute;top:84px;left:20px;white-space:nowrap" class="ft08"><i>কনসালটেন্ট (গাইনি ও হাই রিস্ক প্রেগনেন্সি)</i></p> 
+<p style="position:absolute;top:102px;left:20px;white-space:nowrap" class="ft08"><i>কনসালটেন্ট (গাইনি ও অবস্ বিভাগ)</i></p>
+<p style="position:absolute;top:118px;left:20px;white-space:nowrap" class="ft08"><i>বঙ্গবন্ধু শেখ মুজিব মেডিকেল বিশ্ববিদ্যালয় (পিজি)</i></p> 
+<p style="position:absolute;top:329px;left:410px;white-space:nowrap" class="ft09"><b>R</b></p>
+<p style="position:absolute;top:372px;left:447px;white-space:nowrap" class="ft010"><b>x</b></p>
+<p style="position:absolute;top:131px;left:379px;white-space:nowrap" class="ft011">0&#160;A&#160;2 X 8 3 0</p>
+<p style="position:absolute;top:993px;left:538px;white-space:nowrap" class="ft012"><i><b>৭ দিন পর আবার আসবেন/অপারেশন</b></i></p>
+<p style="position:absolute;top:993px;left:451px;white-space:nowrap" class="ft013"><b>Next Plan:&#160;</b></p>
+<p style="position:absolute;top:1195px;left:192px;white-space:nowrap" class="ft012"><i><b>চেম্বারঃ </b></i></p>
+<p style="position:absolute;top:1195px;left:232px;white-space:nowrap" class="ft01"><i>&emsp;ইবনে সিনা ডি ল্যাব এন্ড কনসাল্টেশন সেন্টার, ধানমন্ডি, রোড নং ১৫, বাড়ি নং ৩৬, ঢাকা-১২০৯</i></p>
+<p style="position:absolute;top:1239px;left:330px;white-space:nowrap" class="ft012"><i><b>রোগী দেখার সময়ঃ</b></i></p>
+<p style="position:absolute;top:1239px;left:429px;white-space:nowrap" class="ft01"><i>&emsp;&emsp;বিকাল ৫টা থেকে রাত ৯টা পর্যন্ত</i></p>
+<p style="position:absolute;top:1217px;left:330px;white-space:nowrap" class="ft012"><i><b>রোগী দেখার দিনঃ</b></i></p>
+<p style="position:absolute;top:1217px;left:424px;white-space:nowrap" class="ft01"><i>&emsp;&emsp;শনিবার থেকে বুধবার</i></p>
+<p style="position:absolute;top:1159px;left:285px;white-space:nowrap" class="ft012"><i><b>ডাক্তারের পরামর্শ ব্যতীত কোন ঔষধ পরিবর্তন বা বন্ধ করবেন না।</b></i></p>
+</div>
+</body>
+</html> """;
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    var targetPath = appDocDir.path;
+    var targetFileName = "example-pdf";
+
+    var generatedPdfFile = await FlutterHtmlToPdf.convertFromHtmlContent(
+        htmlContent, targetPath, targetFileName);
+    generatedPdfFilePath = generatedPdfFile.path;
+  }
+
+  // Write pdf and save
+
+  final pdf = pw.Document();
+
+  writeOnPdf(){
+
+    pdf.addPage(
+        pw.MultiPage(
+          pageFormat: PdfPageFormat.a5,
+          margin: pw.EdgeInsets.all(32),
+
+          build: (pw.Context context){
+            return <pw.Widget>  [
+              pw.Header(
+                  level: 0,
+                  child: pw.Text("Easy Approach Document", style: pw.TextStyle(fontSize: 40))
+              ),
+
+              pw.Paragraph(
+                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna. Quisque sagittis purus sit amet. A arcu cursus vitae congue mauris rhoncus aenean vel elit. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Viverra justo nec ultrices dui sapien eget mi proin sed."
+              ),
+
+              pw.Paragraph(
+                  text: "Lorem ipsum dolor sit a1met, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna. Quisque sagittis purus sit amet. A arcu cursus vitae congue mauris rhoncus aenean vel elit. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Viverra justo nec ultrices dui sapien eget mi proin sed."
+              ),
+
+              pw.Header(
+                  level: 1,
+                  child: pw.Text("Second Heading")
+              ),
+
+              pw.Paragraph(
+                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna. Quisque sagittis purus sit amet. A arcu cursus vitae congue mauris rhoncus aenean vel elit. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Viverra justo nec ultrices dui sapien eget mi proin sed."
+              ),
+
+              pw.Paragraph(
+                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna. Quisque sagittis purus sit amet. A arcu cursus vitae congue mauris rhoncus aenean vel elit. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Viverra justo nec ultrices dui sapien eget mi proin sed."
+              ),
+
+              pw.Paragraph(
+                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna. Quisque sagittis purus sit amet. A arcu cursus vitae congue mauris rhoncus aenean vel elit. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Viverra justo nec ultrices dui sapien eget mi proin sed."
+              ),
+            ];
+          },
+
+
+        )
+    );
+  }
+
+  Future savePdf() async{
+    Directory documentDirectory = await getApplicationDocumentsDirectory();
+
+    String documentPath = documentDirectory.path;
+
+    File file = File("$documentPath/example.pdf");
+
+    file.writeAsBytesSync(pdf.save());
+  }
 
 
   @override
@@ -638,7 +821,7 @@ class PrescriptionState extends State<Prescription> {
       ),
     );
 
-    final medicine = Padding(
+    final medication = Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: ExpansionTileCard(
         baseColor: kBackgroundColor,
@@ -852,7 +1035,6 @@ class PrescriptionState extends State<Prescription> {
           ListTile(
             title: new TextFormField(
               keyboardType: TextInputType.multiline,
-              autofocus: true,
               decoration: new InputDecoration(
                 hintText: "",
                 contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -1012,9 +1194,13 @@ class PrescriptionState extends State<Prescription> {
     final preview = Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 90),
       child: MaterialButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed('');
-        },
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PDFViewerScaffold(
+                  appBar: AppBar(title: Text("Prescription Preview")),
+                  path: generatedPdfFilePath)),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
         ),
@@ -1027,9 +1213,25 @@ class PrescriptionState extends State<Prescription> {
     final saveAndPrint = Padding(
       padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 90),
       child: MaterialButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed('');
+
+        onPressed: ()async{
+          writeOnPdf();
+          await savePdf();
+
+          Directory documentDirectory = await getApplicationDocumentsDirectory();
+
+          String documentPath = documentDirectory.path;
+
+          String fullPath = "$documentPath/example.pdf";
+
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => PdfPreviewScreen(
+                path: fullPath,
+              )
+          ));
+
         },
+
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
         ),
@@ -1043,7 +1245,7 @@ class PrescriptionState extends State<Prescription> {
       padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 90),
       child: MaterialButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('');
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => PreviewPrescription()));
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
@@ -1203,23 +1405,14 @@ class PrescriptionState extends State<Prescription> {
                   children: [
                     SizedBox(height: 20,),
                     patientInfo,
-
                     diseaseCondition,
-
                     chiefComplaint,
-
                     oE,
-
                     history,
-
-                    medicine,
-
+                    medication,
                     advises,
-
                     preview,
-
                     saveAndPrint,
-
                     teleMedicine,
                     SizedBox(height: 50,),
                   ],
@@ -1373,7 +1566,25 @@ class PrescriptionState extends State<Prescription> {
         ),
     );
   }
+
 }
+
+class PdfPreviewScreen extends StatelessWidget {
+  final String path;
+
+  PdfPreviewScreen({this.path,  appBarAppBar, AppBar appBar});
+
+  @override
+  Widget build(BuildContext context) {
+    return PDFViewerScaffold(
+      appBar: AppBar(
+          title: Text("Generated PDF Document")
+      ),
+      path: path,
+    );
+  }
+}
+
 
 class PaidTK {
   PaidTK(this.name, this.address);

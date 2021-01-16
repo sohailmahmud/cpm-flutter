@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:pro_health/ui/pages/bottombar/ItemsPage.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
 class Earnings extends StatefulWidget {
   static String tag = 'Earnings';
@@ -61,7 +60,7 @@ class EarningsState extends State<Earnings> {
           children: <Widget>[
             _buildTile(
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(22.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,9 +141,8 @@ class EarningsState extends State<Earnings> {
               ),
             ),
             _buildTile(
-              Padding
-                (
-                  padding: const EdgeInsets.all(24.0),
+              Padding (
+                  padding: const EdgeInsets.all(20.0),
                   child: Column
                     (
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -167,6 +165,7 @@ class EarningsState extends State<Earnings> {
                               Text('\৳16,000', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 34.0)),
                             ],
                           ),
+                          SizedBox(height: 50,),
                           DropdownButton
                             (
                               isDense: true,
@@ -199,9 +198,8 @@ class EarningsState extends State<Earnings> {
               ),
             ),
             _buildTile(
-              Padding
-                (
-                padding: const EdgeInsets.all(24.0),
+              Padding (
+                padding: const EdgeInsets.all(20.0),
                 child: Row
                   (
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

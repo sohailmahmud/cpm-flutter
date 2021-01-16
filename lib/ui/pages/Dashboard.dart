@@ -56,13 +56,17 @@ class _DashboardState extends State<Dashboard> {
                 dense: true,
                 title: Text("Home", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
                 leading: Icon(Icons.home, size: 28, color: kBaseColor,),
-                onTap: (){Navigator.of(context).pushNamed(Home.tag);},
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => Home()));
+                  },
               ),
               ListTile(
                 dense: true,
-                title: Text("Patients", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                title: Text("Pharma Updates", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
                 leading: Icon(Icons.wheelchair_pickup, size: 28, color: kBaseColor),
-                onTap: (){},
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => PharmaUpdates()));
+                },
               ),
               ListTile(
                 dense: true,
@@ -186,7 +190,7 @@ class _DashboardState extends State<Dashboard> {
           curveSize: 85,
           style: TabStyle.reactCircle,
           items: [
-            TabItem(icon: Image.asset('assets/image.png', scale: 12.0,), title: ''),
+            TabItem(icon: Image.asset('assets/appoint.png', scale: 12.0,), title: ''),
             TabItem(icon: Image.asset('assets/blog.png', scale: 12.0,), title: ''),
             TabItem(icon: Image.asset('assets/home.png', scale: 11.0,), title: ''),
             TabItem(icon: Image.asset('assets/rx.png', scale: 15.0,), title: ''),
