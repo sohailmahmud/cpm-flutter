@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 // Colors
 
 final kSwatchColor = Color(0xff0C4CA3);
-const kBaseColor = Color(0xFF233581);
+const kBaseColor = Color(0xFF096292);
 const kBackgroundColor = Color(0xFFF2F2F2);
-const kDashBoxColor = Color(0xff0C4CA3);
+const kDashBoxColor = Color(0xFF096292);
 const kResendBtnColor = Color(0xff2E6DAF);
 const kTitleTextColor = Color(0xFF303030);
 const kBodyTextColor = Color(0xFF4B4B4B);

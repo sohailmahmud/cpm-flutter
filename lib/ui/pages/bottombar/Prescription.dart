@@ -16,7 +16,9 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pro_health/ui/pages/bottombar/PreviewPrescription.dart';
 import 'package:pro_health/ui/utilities/Constant.dart';
+import 'package:quill_delta/quill_delta.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
+import 'package:zefyr/zefyr.dart';
 
 class Prescription extends StatefulWidget {
   static String tag = 'Prescription';
@@ -44,7 +46,7 @@ class PrescriptionState extends State<Prescription> {
   final brand = <Brand>[Brand('Fenuc Plus', ''), Brand('Mycin', ''), Brand('5-Fluril', ''), Brand('A-Clox', ''), Brand('Geocef', '')];
   Brand selectedBrand;
 
-  final newPatient = <NewPatient>[NewPatient('Sohail', '12345'), NewPatient('Mahmud', '12345'), NewPatient('Sami', '12345'), NewPatient('Rony', '12345'), NewPatient('Alamin', '12345')];
+  final newPatient = <NewPatient>[NewPatient('Sohail', '12345'), NewPatient('Mahmud', '12345'), NewPatient('Sami', '12345'), NewPatient('Alamin', '12345')];
   NewPatient selectedNewPatient;
 
   final nextVisit = <NextVisit>[NextVisit('After Day 1', ''), NextVisit('After Day 2', ''), NextVisit('After Day 3', ''), NextVisit('After Day 4', ''), NextVisit('After Day 5', '')];
@@ -58,13 +60,23 @@ class PrescriptionState extends State<Prescription> {
 
   final format = DateFormat("dd-MM-yyyy");
 
-
   String generatedPdfFilePath;
+
+  ZefyrController _controller;
+  FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
+    final document = _loadDocument();
+    _controller = ZefyrController(document);
+    _focusNode = FocusNode();
     generateExampleDocument();
+  }
+
+  NotusDocument _loadDocument(){
+    final Delta delta = Delta()..insert("Zefyr start\n");
+    return NotusDocument.fromDelta(delta);
   }
 
   Future<void> generateExampleDocument() async {
@@ -245,7 +257,15 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
             ExpansionTileCard(
               baseColor: kBackgroundColor,
               key: cardA,
-              leading: CircleAvatar(child: Icon(Icons.wheelchair_pickup, color: Colors.white)),
+              leading: CircleAvatar(
+                backgroundColor: kShadowColor,
+                radius: 25,
+                child: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  radius: 23.0,
+                  child: Image.asset('assets/patientinfo.png'),
+                ),
+              ),
               title: Text('Patient Information', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontSize: 16, fontWeight: FontWeight.w700),),
               children: <Widget>[
                 SizedBox(height: 15,),
@@ -504,13 +524,21 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
       child: ExpansionTileCard(
         baseColor: kBackgroundColor,
         key: cardB,
-        leading: CircleAvatar(child: Icon(Icons.saved_search, color: Colors.white)),
+        leading: CircleAvatar(
+          backgroundColor: kShadowColor,
+          radius: 25,
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 23.0,
+            child: Image.asset('assets/diseasecondition.png'),
+          ),
+        ),
         title: Text('Disease Condition', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontSize: 16, fontWeight: FontWeight.w700),),
         children: <Widget>[
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "Type/Search & Add",
                 suffixIcon: IconButton(
@@ -562,14 +590,22 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
       child: ExpansionTileCard(
         baseColor: kBackgroundColor,
         key: cardC,
-        leading: CircleAvatar(child: Icon(Icons.dashboard_customize, color: Colors.white)),
+        leading: CircleAvatar(
+          backgroundColor: kShadowColor,
+          radius: 25,
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 23.0,
+            child: Image.asset('assets/cc.png'),
+          ),
+        ),
         title: Text('C/C', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontSize: 16, fontWeight: FontWeight.w700),),
         children: <Widget>[
 
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "Type/Search & Add",
                 suffixIcon: IconButton(
@@ -590,13 +626,21 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
       child: ExpansionTileCard(
         baseColor: kBackgroundColor,
         key: cardD,
-        leading: CircleAvatar(child: Icon(Icons.ac_unit, color: Colors.white)),
+        leading: CircleAvatar(
+          backgroundColor: kShadowColor,
+          radius: 25,
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 23.0,
+            child: Image.asset('assets/oe.png'),
+          ),
+        ),
         title: Text('O/E', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontSize: 16, fontWeight: FontWeight.w700),),
         children: <Widget>[
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "BP",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -607,7 +651,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "Height",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -618,7 +662,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "Weight",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -629,7 +673,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "BMI",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -638,9 +682,26 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
             ),
           ),
           ListTile(
+            title: DateTimeField(
+              format: format,
+              onShowPicker: (context, currentValue) {
+                return showDatePicker(
+                    context: context,
+                    firstDate: DateTime(1900),
+                    initialDate: currentValue ?? DateTime.now(),
+                    lastDate: DateTime(2100));
+              },
+              decoration: InputDecoration(
+                hintText: "LMP",
+                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+              ),
+            ),
+          ),
+          ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "EDD",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -651,7 +712,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "P.Dose",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -662,7 +723,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "Pulse",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -673,7 +734,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "SPO2",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -684,7 +745,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "R/R",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -751,7 +812,15 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
       child: ExpansionTileCard(
         baseColor: kBackgroundColor,
         key: cardE,
-        leading: CircleAvatar(child: Icon(Icons.history, color: Colors.white)),
+        leading: CircleAvatar(
+          backgroundColor: kShadowColor,
+          radius: 25,
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 23.0,
+            child: Image.asset('assets/history.png'),
+          ),
+        ),
         title: Text('History', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontSize: 16, fontWeight: FontWeight.w700),),
         children: <Widget>[
           ListTile(
@@ -826,9 +895,108 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
       child: ExpansionTileCard(
         baseColor: kBackgroundColor,
         key: cardF,
-        leading: CircleAvatar(child: Icon(Icons.api_rounded, color: Colors.white)),
+        leading: CircleAvatar(
+          backgroundColor: kShadowColor,
+          radius: 25,
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 23.0,
+            child: Image.asset('assets/medication.png'),
+          ),
+        ),
         title: Text('Medication', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontSize: 16, fontWeight: FontWeight.w700),),
         children: <Widget>[
+          ListTile(
+            title: Card(
+              borderOnForeground: true,
+              color: kWhiteShadow,
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 12.0, top: 10.0, right: 0.0, bottom: 5.0),
+                            child: Text(
+                              'Brand Name', textAlign: TextAlign.center,
+                              style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kBaseColor, fontWeight: FontWeight.w600),
+                            ),
+                          )
+                      ),
+                      Container(
+                        height: 30,
+                        child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
+                      ),
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 5.0),
+                          child: Text(
+                            'Medicine Category', textAlign: TextAlign.center,
+                            style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kBaseColor, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 30,
+                        child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
+                      ),
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 5.0),
+                          child: Text(
+                            'Group', textAlign: TextAlign.center,
+                            style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kBaseColor, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 20.0, top: 0.0, right: 0.0, bottom: 10.0),
+                            child: Text(
+                              'Company Name', textAlign: TextAlign.center,
+                              style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kBaseColor, fontWeight: FontWeight.w600),
+                            ),
+                          )
+                      ),
+                      Container(
+                          height: 30,
+                          child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
+                          child: Text(
+                            'Price', textAlign: TextAlign.center,
+                            style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kBaseColor, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                      Container(
+                          height: 30,
+                          child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
+                          child: Text(
+                            'FDA Approved', textAlign: TextAlign.center,
+                            style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kBaseColor, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 10,),
           ListTile(
             title: Container(
               child:
@@ -1033,9 +1201,9 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
             ),
           ),
           ListTile(
-            title: new TextFormField(
+            title: TextFormField(
               keyboardType: TextInputType.multiline,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                 hintText: "",
                 contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -1046,9 +1214,8 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
             ),
           ),
           ListTile(
-            title: new TextField(
+            title: TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
               decoration: new InputDecoration(
                 hintText: "Next Visit",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -1137,7 +1304,6 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.number,
-              autofocus: true,
               decoration: new InputDecoration(
                 hintText: "Visit No.",
                 contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -1153,14 +1319,21 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
       child: ExpansionTileCard(
         baseColor: kBackgroundColor,
         key: cardG,
-        leading: CircleAvatar(child: Icon(Icons.domain, color: Colors.white)),
+        leading: CircleAvatar(
+          backgroundColor: kShadowColor,
+          radius: 25,
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 23.0,
+            child: Image.asset('assets/advises.png'),
+          ),
+        ),
         title: Text('Advises', style: TextStyle(fontFamily: 'Segoe', color: kBaseColor, fontSize: 16, fontWeight: FontWeight.w700),),
         children: <Widget>[
           ListTile(
             title: new TextField(
               //controller: _controller,
               keyboardType: TextInputType.text,
-              autofocus: true,
               decoration: new InputDecoration(
                 hintText: "Diagnosis Advise",
                 suffixIcon: IconButton(
@@ -1175,7 +1348,7 @@ p {margin: 0; padding: 0;}	.ft00{font-size:15px;font-family:YRCDEU+TimesNewRoman
           ListTile(
             title: new TextField(
               keyboardType: TextInputType.text,
-              autofocus: true,
+              autofocus: false,
               decoration: new InputDecoration(
                 hintText: "General Advise",
                 suffixIcon: IconButton(
