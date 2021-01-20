@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Pro Health',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.teal,
         primaryColor: kBaseColor,
         fontFamily: 'Nunito',
       ),

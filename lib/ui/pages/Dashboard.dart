@@ -126,16 +126,16 @@ class _DashboardState extends State<Dashboard> {
 
     return Scaffold(
         drawer: drawer,
-      appBar: AppBar(
-        /*centerTitle: true,
-        title: Text('Pro Health', style: TextStyle(color: kBaseColor),),*/
+      /*appBar: AppBar(
+        *//*centerTitle: true,
+        title: Text('Pro Health', style: TextStyle(color: kBaseColor),),*//*
         elevation: 0,
-        backgroundColor: kWhiteShade,
+        backgroundColor: kBaseColor,
         iconTheme: IconThemeData(color: kBaseColor),
         toolbarHeight: 50,
         actions: <Widget>[
           IconBadge(
-            icon: Icon(Icons.notifications_active_outlined, color: kBaseColor,),
+            icon: Icon(Icons.notifications_active_outlined, color: kWhiteShade,),
             itemCount: 50,
             badgeColor: Colors.red,
             itemColor: Colors.white,
@@ -179,7 +179,7 @@ class _DashboardState extends State<Dashboard> {
             ),
           )
         ],
-       ),
+       ),*/
       backgroundColor: kBackgroundColor,
       body: listWidgets[selectedIndex],
         bottomNavigationBar: ConvexAppBar(
@@ -192,7 +192,7 @@ class _DashboardState extends State<Dashboard> {
           items: [
             TabItem(icon: Image.asset('assets/patientserialactive.png', scale: 12.0,), activeIcon: Image.asset('assets/patientserial.png', scale: 10.0,)),
             TabItem(icon: Image.asset('assets/blogactive.png', scale: 12.0,), activeIcon: Image.asset('assets/blog.png', scale: 12.0,)),
-            TabItem(icon: Image.asset('assets/homeactive.png', scale: 8.0,), title: '', activeIcon: Image.asset('assets/home.png', scale: 12.0,)),
+            TabItem(icon: Image.asset('assets/home.png', scale: 8.0,), title: '', activeIcon: Image.asset('assets/homeactive.png', scale: 12.0,)),
             TabItem(icon: Image.asset('assets/rx1active.png', scale: 2.0,), title: '', activeIcon: Image.asset('assets/rx1.png', scale: 5.0,)),
             TabItem(icon: Image.asset('assets/doctorprofileactive.png', scale: 12.0,), title: '', activeIcon: Image.asset('assets/doctorprofile.png')),
           ],

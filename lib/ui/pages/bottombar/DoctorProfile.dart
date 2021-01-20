@@ -9,6 +9,12 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
+import 'Home.dart';
+import 'PharmaUpdates.dart';
+
+const String _AccountName = 'Prof. Mohammed Hanif';
+const String _AccountEmail = 'doctor101@prohealth.com';
+
 class DoctorProfile extends StatefulWidget {
   DoctorProfile({Key key, this.title}) : super(key: key);
   final String title;
@@ -226,7 +232,7 @@ class DoctorProfileState extends State<DoctorProfile> {
               DateTime.friday,
             },
             firstDayOfWeek: DateTime.saturday,
-            selectedFillColor: Colors.indigo.shade300,
+            selectedFillColor: kBaseColor,
             onChanged: (v) {
               printIntAsDay(v);
               setState(() {
@@ -291,18 +297,99 @@ class DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
 
-    final topBarProfile = Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 30),
-      child: MaterialButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        onPressed: () {
-          Navigator.of(context).pushNamed('');
-        },
-        padding: EdgeInsets.all(8),
-        color: kDashBoxColor,
-        child: Text('My Profile', style: TextStyle(fontFamily: "Segoe", fontWeight: FontWeight.w700, fontSize: 20, color: Colors.white)),
+    var drawer = Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            decoration: BoxDecoration(
+              color: kBaseColor,
+            ),
+            accountName: const Text(_AccountName, style: TextStyle(fontFamily: 'Segoe', fontSize: 16),),
+            accountEmail: const Text(_AccountEmail, style: TextStyle(fontFamily: 'Segoe', fontSize: 13),),
+            currentAccountPicture: CircleAvatar(
+              radius: 50,
+              backgroundColor: kInfectedColor,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 48.0,
+                child: Image.asset('assets/doctorimg.png'),
+              ),
+            ),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height,
+            color: kBackgroundColor,
+            child: Column(children: <Widget>[
+              ListTile(
+                dense: true,
+                title: Text("Home", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.home, size: 28, color: kBaseColor,),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => Home()));
+                },
+              ),
+              ListTile(
+                dense: true,
+                title: Text("Pharma Updates", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.wheelchair_pickup, size: 28, color: kBaseColor),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => PharmaUpdates()));
+                },
+              ),
+              ListTile(
+                dense: true,
+                title: Text("News", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.speaker_notes, size: 28, color: kBaseColor),
+                onTap: (){
+                  Navigator.pushNamed(context, "/news");
+                },
+              ),
+
+              ListTile(
+                dense: true,
+                title: Text("Appointments", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.domain_verification, size: 28, color: kBaseColor),
+                onTap: (){
+                  Navigator.pushNamed(context, "/appointment");
+                },
+              ),
+              ListTile(
+                dense: true,
+                title: Text("Settings", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.settings, size: 28, color: kBaseColor),
+                onTap: (){
+                  Navigator.pushNamed(context, "/settings");
+                },
+              ),
+              ListTile(
+                dense: true,
+                title: Text("Profile", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.person, size: 28, color: kBaseColor),
+                onTap: (){
+                  Navigator.pushNamed(context, "/profile");
+                },
+              ),
+              ListTile(
+                dense: true,
+                title: Text("Sign Out", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.logout, size: 28, color: kBaseColor),
+                onTap: () async {
+                  SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                },
+              ),
+              Divider(height: 2, thickness: 1, color: kBaseColor ),
+              ListTile(
+                dense: true,
+                title: Text("Reviews", style: TextStyle(color: kBaseColor, fontFamily: 'Segoe', fontSize: 18, fontWeight: FontWeight.w700),),
+                leading: Icon(Icons.star_half, size: 28, color: kBaseColor,),
+                onTap: (){
+                  Navigator.pushNamed(context, "/reviews");
+                },
+              ),
+            ],),
+          ),
+        ],
       ),
     );
 
@@ -313,14 +400,14 @@ class DoctorProfileState extends State<DoctorProfile> {
         overflow: Overflow.visible,
         children: [
           CircleAvatar(
-            radius: 65,
+            radius: 55,
             backgroundColor: kDashBoxColor,
             child: CircleAvatar(
               backgroundColor: kWhiteShade,
-              radius: 63,
+              radius: 53,
               child: CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 60.0,
+                radius: 50.0,
                 child: Image.asset('assets/doctorimg.png'),
               ),
             ),
@@ -328,7 +415,7 @@ class DoctorProfileState extends State<DoctorProfile> {
           Positioned(
               top: -(radius - distance),
               right: -(radius + iconSize + distance),
-              bottom: -iconSize - distance - 95,
+              bottom: -iconSize - distance - 70,
               left: radius,
               child: Icon(
                 Icons.circle,
@@ -340,14 +427,10 @@ class DoctorProfileState extends State<DoctorProfile> {
               top: -(iconSize + radius),
               right: -(radius + iconSize - distance - 40),
               bottom: iconSize - 40,
-              left: radius + iconSize + 60,
+              left: radius + iconSize + 38,
               child: RawMaterialButton(
                 elevation: 5.0,
-                child: Icon(
-                  Icons.edit,
-                  color: Colors.blue,
-                  size: iconSize,
-                ),
+                child: Image.asset('assets/edit.png'),
                 shape: CircleBorder(),
                 fillColor: Colors.white,
                 padding: const EdgeInsets.all(3.0),
@@ -436,7 +519,7 @@ class DoctorProfileState extends State<DoctorProfile> {
 
     final consultations = Card(
       borderOnForeground: true,
-      color: kWhiteShadow,
+      color: Color(0xFFE5E4E2),
       elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -460,9 +543,9 @@ class DoctorProfileState extends State<DoctorProfile> {
             ),
             Container(
               child: Padding(
-                padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 5.0),
+                padding: EdgeInsets.only(left: 5.0, top: 10.0, right: 0.0, bottom: 5.0),
                 child: Text(
-                  ' CN-1234', textAlign: TextAlign.center,
+                  '54', textAlign: TextAlign.center,
                   style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -475,7 +558,7 @@ class DoctorProfileState extends State<DoctorProfile> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
                     child: Text(
-                      '   Consultation Fees ', textAlign: TextAlign.center,
+                      '   Consultation Fees (Online)', textAlign: TextAlign.center,
                       style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
                     ),
                   )
@@ -498,7 +581,32 @@ class DoctorProfileState extends State<DoctorProfile> {
             children: [
               Container(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 20.0),
+                    padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
+                    child: Text(
+                      '   Consultation Fees (Physical)', textAlign: TextAlign.center,
+                      style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
+                    ),
+                  )
+              ),
+              Container(
+                  height: 30,
+                  child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 5.0),
+                  child: Text(
+                    ' 1,500 TK.', textAlign: TextAlign.center,
+                    style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 15.0),
                     child: Text(
                       '   Follow-up Fees ', textAlign: TextAlign.center,
                       style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTitleTextColor, fontWeight: FontWeight.w600),
@@ -506,14 +614,13 @@ class DoctorProfileState extends State<DoctorProfile> {
                   )
               ),
               Container(
-                height: 30,
-                child: VerticalDivider(color: Colors.black54, thickness: 0.8,),
-              ),
+                  height: 30,
+                  child: VerticalDivider(color: Colors.black54, thickness: 0.8,)),
               Container(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 20.0),
+                  padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 15.0),
                   child: Text(
-                    ' 1,000 TK.', textAlign: TextAlign.center,
+                    ' 500 TK.', textAlign: TextAlign.center,
                     style: TextStyle(fontFamily: 'Segoe', fontSize: 18.0, color: kTextLightColor, fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -625,16 +732,32 @@ class DoctorProfileState extends State<DoctorProfile> {
     );
 
     return Scaffold(
+      drawer: drawer,
+      appBar: AppBar(
+        elevation: 2.0,
+        centerTitle: true,
+        backgroundColor: kBaseColor,
+        shadowColor: Colors.teal,
+        iconTheme: IconThemeData(color: kWhiteShade),
+        toolbarHeight: 40,
+        title: Text('My Profile', style: TextStyle(fontFamily:'Segoe', color: kWhiteShade, fontWeight: FontWeight.w700),),
+      ),
       backgroundColor: kBackgroundColor,
       body: Center(
         child: ListView(
           shrinkWrap: true,
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-            topBarProfile,
-            SizedBox(height: 6.0),
+            SizedBox(height: 4.0),
             doctorImg,
-            SizedBox(height: 6.0),
+            SizedBox(height: 4.0),
+            const Divider(
+              color: kBodyTextColor,
+              height: 25,
+              thickness: 0.6,
+              indent: 0.0,
+              endIndent: 0.0,
+            ),
             doctorName,
             doctorDegree,
             doctorWorkPlace,
@@ -643,21 +766,9 @@ class DoctorProfileState extends State<DoctorProfile> {
             bmdcNumber,
             experience,
             starRating,
-            const Divider(
-              color: kBodyTextColor,
-              height: 20,
-              thickness: 0.5,
-              indent: 0,
-              endIndent: 0,
-            ),
+            SizedBox(height: 4,),
             consultations,
-            const Divider(
-              color: kBodyTextColor,
-              height: 20,
-              thickness: 0.5,
-              indent: 0,
-              endIndent: 0,
-            ),
+            SizedBox(height: 8,),
             chamberAddress1,
             FDottedLine(
               color: kBodyTextColor,
@@ -667,13 +778,6 @@ class DoctorProfileState extends State<DoctorProfile> {
               space: 2.0,
             ),
             chamberAddress2,
-            const Divider(
-              color: kBodyTextColor,
-              height: 20,
-              thickness: 0.5,
-              indent: 0,
-              endIndent: 0,
-            ),
             SizedBox(height: 10.0,),
             consultationDay,
             SizedBox(height: 2,),
